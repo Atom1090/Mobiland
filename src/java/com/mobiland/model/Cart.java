@@ -11,10 +11,7 @@ import java.util.Date;
  */
 
 public class Cart implements Serializable {
- 
-    
-    
-  
+
     private Date time;
     
     private int quantity;
