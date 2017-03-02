@@ -1106,7 +1106,22 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
     margin-bottom: 15px;
 }
 
-
+#login-form-wrap-top, #coupon-collapse-wrap-top {
+    background: none repeat scroll 0 0 #f4f4f4;
+    margin-bottom: 30px;
+    padding: 25px;
+}
+#login-form-wrap-top label {
+    display: block;
+    margin-bottom: 5px;
+}
+#login-form-wrap-top input[type="text"], #login-form-wrap-top input[type="password"] {
+    margin-bottom: 10px;
+    width: 250px;
+}
+#login-form-wrap-top input[type="submit"] {
+    margin-bottom: 15px;
+}
 
 .single-shop-product h2 {
     font-size: 20px;
