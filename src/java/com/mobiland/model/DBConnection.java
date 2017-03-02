@@ -19,7 +19,8 @@ public class DBConnection {
     public DBConnection() {
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland?"
+			+ "user=root&password=Watchdogs#45074452&autoReconnect=true&useSSL=false");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
