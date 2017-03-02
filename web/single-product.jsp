@@ -1,3 +1,5 @@
+<%@page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -41,40 +43,84 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="user-menu">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="signup.html"><i class="fa fa-user"></i> Sign up</a></li>
 <!--edited by Hatem Al-Amir
 	adding th login form to the top shortcut bar
 -->
+                        <ul>
+							<c:choose>
+								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
+									<li><a href="profile.jsp"><i class="fa fa-user"></i> My Account</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a data-toggle="modal" data-target="#loginFirstModal"><i class="fa fa-user"></i> My Account</a></li>
+								</c:otherwise>
+                            </c:choose>
+							
+							<c:choose>
+								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
+									<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a data-toggle="modal" data-target="#loginFirstModal"><i class="fa fa-user"></i> Wishlist</a></li>
+								</c:otherwise>
+                            </c:choose>
+							
+							<c:choose>
+								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
+									<li><a href="cart.jsp"><i class="fa fa-user"></i> My Cart</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a data-toggle="modal" data-target="#loginFirstModal"><i class="fa fa-user"></i> My Cart</a></li>
+								</c:otherwise>
+                            </c:choose>
+                            
+                            <li><a href="signup.jsp"><i class="fa fa-user"></i> Sign up</a></li>
+							
                             <li>
 								<a  data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top"><i class="fa fa-user"></i> Login</a>
-								<form id="login-form-wrap-top" class="login collapse" method="post">
-									<p class="form-row form-row-first">
-										<label for="username">Username or email <span class="required">*</span>
-										</label>
-										<input type="text" id="username-top" name="username" class="input-text">
-									</p>
-									<p class="form-row form-row-last">
-										<label for="password">Password <span class="required">*</span>
-										</label>
-										<input type="password" id="password-top" name="password" class="input-text">
-									</p>
-									<div class="clear"></div>
-
-
-									<p class="form-row">
-										<input type="submit" value="Login" name="login" class="button">
-										<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
-									</p>
-
-									<div class="clear"></div>
-								</form>
 							</li>
-<!--end of edited part by Hatem Al-Amir-->
+							
+							<form id="login-form-wrap-top" class="login collapse" method="post">
+								<p class="form-row form-row-first">
+									<label for="username">Username or email <span class="required">*</span>
+									</label>
+									<input type="text" id="username-top" name="username" class="input-text">
+								</p>
+								<p class="form-row form-row-last">
+									<label for="password">Password <span class="required">*</span>
+									</label>
+									<input type="password" id="password-top" name="password" class="input-text">
+								</p>
+								<div class="clear"></div>
+
+
+								<p class="form-row">
+									<input type="submit" value="Login" name="login" class="button">
+									<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
+								</p>
+
+								<div class="clear"></div>
+							</form>
+							
+							<div id="loginFirstModal" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content">
+									  <div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Be our guest!</h4>
+									  </div>
+									  <div class="modal-body">
+										<p>Please login first</p>
+									  </div>
+									  <div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									  </div>
+									</div>
+								</div>
+							</div>
                         </ul>
+<!--end of edited part by Hatem Al-Amir-->
                     </div>
                 </div>
             </div>
@@ -92,7 +138,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.jsp">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -112,14 +158,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li class="active"><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="shop.jsp">Shop page</a></li>
+                        <li class="active"><a href="single-product.jsp">Single product</a></li>
+                        <li><a href="cart.jsp">Cart</a></li>
+                        <li><a href="signup.jsp">Sign up</a></li>
                     </ul>
                 </div>  
             </div>
@@ -385,7 +428,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
                         <h2>u<span>Stora</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        <p>uStora is one of the most prominent web sites in Egypt. We provide a wide variety of products that meet all needs and tastes.</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>

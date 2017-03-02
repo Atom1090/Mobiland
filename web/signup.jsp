@@ -1,3 +1,5 @@
+<%@page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -41,40 +43,84 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="user-menu">
-                        <ul>
-                            <li><a href="profile.html"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="signup.html"><i class="fa fa-user"></i> Sign up</a></li>
 <!--edited by Hatem Al-Amir
 	adding th login form to the top shortcut bar
 -->
+                        <ul>
+							<c:choose>
+								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
+									<li><a href="profile.jsp"><i class="fa fa-user"></i> My Account</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a data-toggle="modal" data-target="#loginFirstModal"><i class="fa fa-user"></i> My Account</a></li>
+								</c:otherwise>
+                            </c:choose>
+							
+							<c:choose>
+								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
+									<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a data-toggle="modal" data-target="#loginFirstModal"><i class="fa fa-user"></i> Wishlist</a></li>
+								</c:otherwise>
+                            </c:choose>
+							
+							<c:choose>
+								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
+									<li><a href="cart.jsp"><i class="fa fa-user"></i> My Cart</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a data-toggle="modal" data-target="#loginFirstModal"><i class="fa fa-user"></i> My Cart</a></li>
+								</c:otherwise>
+                            </c:choose>
+                            
+                            <li><a href="signup.jsp"><i class="fa fa-user"></i> Sign up</a></li>
+							
                             <li>
 								<a  data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top"><i class="fa fa-user"></i> Login</a>
-								<form id="login-form-wrap-top" class="login collapse" method="post">
-									<p class="form-row form-row-first">
-										<label for="username">Username or email <span class="required">*</span>
-										</label>
-										<input type="text" id="username-top" name="username" class="input-text">
-									</p>
-									<p class="form-row form-row-last">
-										<label for="password">Password <span class="required">*</span>
-										</label>
-										<input type="password" id="password-top" name="password" class="input-text">
-									</p>
-									<div class="clear"></div>
-
-
-									<p class="form-row">
-										<input type="submit" value="Login" name="login" class="button">
-										<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
-									</p>
-
-									<div class="clear"></div>
-								</form>
 							</li>
-<!--end of edited part by Hatem Al-Amir-->
+							
+							<form id="login-form-wrap-top" class="login collapse" method="post">
+								<p class="form-row form-row-first">
+									<label for="username">Username or email <span class="required">*</span>
+									</label>
+									<input type="text" id="username-top" name="username" class="input-text">
+								</p>
+								<p class="form-row form-row-last">
+									<label for="password">Password <span class="required">*</span>
+									</label>
+									<input type="password" id="password-top" name="password" class="input-text">
+								</p>
+								<div class="clear"></div>
+
+
+								<p class="form-row">
+									<input type="submit" value="Login" name="login" class="button">
+									<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
+								</p>
+
+								<div class="clear"></div>
+							</form>
+							
+							<div id="loginFirstModal" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content">
+									  <div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Be our guest!</h4>
+									  </div>
+									  <div class="modal-body">
+										<p>Please login first</p>
+									  </div>
+									  <div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									  </div>
+									</div>
+								</div>
+							</div>
                         </ul>
+<!--end of edited part by Hatem Al-Amir-->
                     </div>
                 </div>
                 
@@ -93,7 +139,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.jsp">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -113,11 +159,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li class="active"><a href="signup.html">Sign up</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="shop.jsp">Shop page</a></li>
+                        <li><a href="single-product.jsp">Single product</a></li>
+                        <li><a href="cart.jsp">Cart</a></li>
+                        <li class="active"><a href="signup.jsp">Sign up</a></li>
                     </ul>
                 </div>  
             </div>
@@ -154,28 +200,28 @@
                         <h2 class="sidebar-title">Products</h2>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <h2><a href="single-product.jsp">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$100.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <h2><a href="single-product.jsp">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$100.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <h2><a href="single-product.jsp">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$100.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <h2><a href="single-product.jsp">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$100.00</del>
                             </div>                             
@@ -185,11 +231,11 @@
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
                         <ul>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
+                            <li><a href="single-product.jsp">Sony Smart TV - 2015</a></li>
+                            <li><a href="single-product.jsp">Sony Smart TV - 2015</a></li>
+                            <li><a href="single-product.jsp">Sony Smart TV - 2015</a></li>
+                            <li><a href="single-product.jsp">Sony Smart TV - 2015</a></li>
+                            <li><a href="single-product.jsp">Sony Smart TV - 2015</a></li>
                         </ul>
                     </div>
                 </div>
@@ -577,11 +623,11 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">User Navigation </h2>
                         <ul>
-                            <li><a href="profile.html">My account</a></li>
+                            <li><a href="profile.jsp">My account</a></li>
                             <li><a href="">Order history</a></li>
                             <li><a href="">Wishlist</a></li>
                             <li><a href="">Vendor contact</a></li>
-                            <li><a href="index.html">Front page</a></li>
+                            <li><a href="index.jsp">Front page</a></li>
                         </ul>                        
                     </div>
                 </div>
