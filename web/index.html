@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ustora Demo</title>
+    <title>Ustora Home Page</title>
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -45,32 +45,35 @@
                             <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="signup.html"><i class="fa fa-user"></i> Sign up</a></li>
+<!--edited by Hatem Al-Amir
+	adding th login form to the top shortcut bar
+-->
+                            <li>
+								<a  data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top"><i class="fa fa-user"></i> Login</a>
+								<form id="login-form-wrap-top" class="login collapse" method="post">
+									<p class="form-row form-row-first">
+										<label for="username">Username or email <span class="required">*</span>
+										</label>
+										<input type="text" id="username-top" name="username" class="input-text">
+									</p>
+									<p class="form-row form-row-last">
+										<label for="password">Password <span class="required">*</span>
+										</label>
+										<input type="password" id="password-top" name="password" class="input-text">
+									</p>
+									<div class="clear"></div>
 
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                </ul>
-                            </li>
+
+									<p class="form-row">
+										<input type="submit" value="Login" name="login" class="button">
+										<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
+									</p>
+
+									<div class="clear"></div>
+								</form>
+							</li>
+<!--end of edited part by Hatem Al-Amir-->
                         </ul>
                     </div>
                 </div>
