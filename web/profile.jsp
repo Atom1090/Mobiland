@@ -1,3 +1,5 @@
+<%@page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -46,9 +48,9 @@
                 <div class="col-md-8">
                    <div class="user-menu">
                         <ul>
-                            <li><a href="profile.html"><i class="fa fa-user"></i> My Account</a></li>
+                            <li><a href="profile.jsp"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="cart.jsp"><i class="fa fa-user"></i> My Cart</a></li>
                         </ul>
                     </div>
                 </div>
@@ -69,7 +71,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.jsp">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -89,11 +91,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="signup.html">SignUp</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li class="active"><a href="shop.jsp">Shop page</a></li>
+                        <li><a href="single-product.jsp">Single product</a></li>
+                        <li><a href="cart.jsp">Cart</a></li>
+                        <li><a href="signup.jsp">Sign up</a></li>
                        
                     </ul>
                 </div>  
@@ -316,7 +318,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
                         <h2>u<span>Stora</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        <p>uStora is one of the most prominent web sites in Egypt. We provide a wide variety of products that meet all needs and tastes.</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
