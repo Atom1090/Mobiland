@@ -80,7 +80,7 @@ public class DbOperationsAdmin {
             return true;
         }
     }
-    
+
     public boolean update(Admin admin) throws SQLException {
 
         String sql = "update admin set username =? , set password= ? where email =?";
@@ -95,7 +95,5 @@ public class DbOperationsAdmin {
             return true;
         }
     }
-    
-    
 
 }

@@ -7,21 +7,18 @@ package com.mobiland.model;
 
 import java.io.Serializable;
 
-
 /**
  *
  * @author shibo
  */
-
 public class Admin implements Serializable {
-  
 
     private Integer id;
 
     private String username;
 
     private String email;
-   
+
     private String password;
 
     public Admin() {
@@ -37,8 +34,9 @@ public class Admin implements Serializable {
         this.email = email;
         this.password = password;
     }
-     public Admin( String email, String password) {
-       
+
+    public Admin(String email, String password) {
+
         this.email = email;
         this.password = password;
     }
@@ -100,6 +98,4 @@ public class Admin implements Serializable {
         return "Admin{" + "id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + '}';
     }
 
-  
-    
 }
