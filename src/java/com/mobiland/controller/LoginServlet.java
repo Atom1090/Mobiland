@@ -76,6 +76,7 @@ public class LoginServlet extends HttpServlet {
 		while(e.hasMoreElements())
 		{
 			String p = (String)e.nextElement();
+			System.out.println((String)request.getParameter(p));
 		}
 	}
 
