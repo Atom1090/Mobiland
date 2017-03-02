@@ -1,5 +1,8 @@
+<!--Added by Hatem Alamir-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.mobiland.controller.StatusHandler" %>
+<!--End addition by Hatem Alamir-->
+
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
