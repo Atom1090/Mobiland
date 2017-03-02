@@ -8,16 +8,20 @@ package com.mobiland.controller;
 import com.mobiland.model.Customer;
 import com.mobiland.model.DBConnection;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Eslam
  */
+@MultipartConfig(maxFileSize = 16177216)
 public class SignupServlet extends HttpServlet {
 
    
@@ -46,7 +50,7 @@ public class SignupServlet extends HttpServlet {
         String email=request.getParameter("billing_email");
         String phone=request.getParameter("billing_phone");
         String password=request.getParameter("account_password");
-        
+        Part part = request.getPart("image");
         
         customer=new Customer();
         
@@ -61,11 +65,11 @@ public class SignupServlet extends HttpServlet {
         customer.setPassword(password);
         customer.setCash("0");
         
-        System.out.println(customer.getFName());
+        InputStream is = part.getInputStream();
         
-        db.insertUser(customer);
+        db.insertUser(customer,part);
         
-        response.sendRedirect("signup.html");
+        response.sendRedirect("signup.jsp");
     }
 
   
