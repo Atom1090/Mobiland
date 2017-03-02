@@ -37,6 +37,11 @@ public class Admin implements Serializable {
         this.email = email;
         this.password = password;
     }
+     public Admin( String email, String password) {
+       
+        this.email = email;
+        this.password = password;
+    }
 
     public Integer getId() {
         return id;
@@ -92,7 +97,9 @@ public class Admin implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mobiland.model.Admin[ id=" + id + " ]";
+        return "Admin{" + "id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + '}';
     }
+
+  
     
 }
