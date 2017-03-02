@@ -44,8 +44,8 @@
                         <ul>
                             <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="signup.html"><i class="fa fa-user"></i> Sign up</a></li>
+                            <li><a href="cart.jsp"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="signup.jsp"><i class="fa fa-user"></i> Sign up</a></li>
 <!--edited by Hatem Al-Amir
 	adding th login form to the top shortcut bar
 -->
@@ -92,7 +92,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.jsp">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -112,11 +112,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <li class="active"><a href="index.jsp">Home</a></li>
+                        <li><a href="shop.jsp">Shop page</a></li>
+                        <li><a href="single-product.jsp">Single product</a></li>
+                        <li><a href="cart.jsp">Cart</a></li>
+                        <li><a href="signup.jsp">Checkout</a></li>
                         <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li>

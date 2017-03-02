@@ -226,18 +226,19 @@
                                 <div class="clear"></div>
                             </form>
 
-                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+<!--Edited by Ashour-->
+                            <form enctype="multipart/form-data" action="SignupServlet" class="checkout" method="post" name="checkout">
 
                                 <div id="customer_details" class="col2-set">
                                     <div class="col-1">
                                         <div class="woocommerce-billing-fields">
                                             <h3>Customer information</h3>
                                             <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
-                                                <label class="" for="billing_country">Country <abbr title="required" class="required">*</abbr>
+                                                <label class="" for="billing_country">Address <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="billing_country" name="billing_country">
-                                                    <option value="">Select a country‚Ä¶</option>
-                                                    <option value="AX">√Öland Islands</option>
+                                                    <option value="">Select a country?</option>
+                                                    <option value="AX">≈land Islands</option>
                                                     <option value="AF">Afghanistan</option>
                                                     <option value="AL">Albania</option>
                                                     <option value="DZ">Algeria</option>
@@ -294,7 +295,7 @@
                                                     <option value="CR">Costa Rica</option>
                                                     <option value="HR">Croatia</option>
                                                     <option value="CU">Cuba</option>
-                                                    <option value="CW">Cura√áao</option>
+                                                    <option value="CW">Cura«ao</option>
                                                     <option value="CY">Cyprus</option>
                                                     <option value="CZ">Czech Republic</option>
                                                     <option value="DK">Denmark</option>
@@ -417,8 +418,8 @@
                                                     <option value="RO">Romania</option>
                                                     <option value="RU">Russia</option>
                                                     <option value="RW">Rwanda</option>
-                                                    <option value="ST">S√£o Tom√© and Pr√≠ncipe</option>
-                                                    <option value="BL">Saint Barth√©lemy</option>
+                                                    <option value="ST">S„o TomÈ and PrÌncipe</option>
+                                                    <option value="BL">Saint BarthÈlemy</option>
                                                     <option value="SH">Saint Helena</option>
                                                     <option value="KN">Saint Kitts and Nevis</option>
                                                     <option value="LC">Saint Lucia</option>
@@ -498,35 +499,22 @@
                                             <div class="clear"></div>
 
                                             <p id="billing_company_field" class="form-row form-row-wide">
-                                                <label class="" for="billing_company">Company Name</label>
+                                                <label class="" for="billing_company">Job</label>
                                                 <input type="text" value="" placeholder="" id="billing_company" name="billing_company" class="input-text ">
                                             </p>
 
-                                            <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-                                                <label class="" for="billing_address_1">Address <abbr title="required" class="required">*</abbr>
-                                                </label>
-                                                <input type="text" value="" placeholder="Street address" id="billing_address_1" name="billing_address_1" class="input-text ">
-                                            </p>
-
-                                            <p id="billing_address_2_field" class="form-row form-row-wide address-field">
-                                                <input type="text" value="" placeholder="Apartment, suite, unit etc. (optional)" id="billing_address_2" name="billing_address_2" class="input-text ">
-                                            </p>
-
+                                             
                                             <p id="billing_city_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
-                                                <label class="" for="billing_city">Town / City <abbr title="required" class="required">*</abbr>
+                                                <label class="" for="billing_city">Birth Date<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="Town / City" id="billing_city" name="billing_city" class="input-text ">
+                                                <input type="text" value="" placeholder="Town / City" id="billing_city" name="billing_date" class="input-text ">
                                             </p>
 
                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                                <label class="" for="billing_state">County</label>
+                                                <label class="" for="billing_state">Interests</label>
                                                 <input type="text" id="billing_state" name="billing_state" placeholder="State / County" value="" class="input-text ">
                                             </p>
-                                            <p id="billing_postcode_field" class="form-row form-row-last address-field validate-required validate-postcode" data-o_class="form-row form-row-last address-field validate-required validate-postcode">
-                                                <label class="" for="billing_postcode">Postcode <abbr title="required" class="required">*</abbr>
-                                                </label>
-                                                <input type="text" value="" placeholder="Postcode / Zip" id="billing_postcode" name="billing_postcode" class="input-text ">
-                                            </p>
+                                            
 
                                             <div class="clear"></div>
 
@@ -553,14 +541,14 @@
                                                     </label>
                                                     <input type="password" value="" placeholder="Password" id="repeat_account_password" name="repeat_account_password" class="input-text">
                                             </p>
-											
+						<input type="submit" value="signup"/>					
                                             <div class="clear"></div>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-
-                        </div>                       
+<!--Edited by Ashour-->
+						</div>                       
                     </div>                    
                 </div>
             </div>

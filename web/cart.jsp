@@ -44,8 +44,8 @@
                         <ul>
                             <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="signup.html"><i class="fa fa-user"></i> Sign up</a></li>
+                            <li><a href="cart.jsp"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="signup.jsp"><i class="fa fa-user"></i> Sign up</a></li>
 <!--edited by Hatem Al-Amir
 	adding th login form to the top shortcut bar
 -->
@@ -92,7 +92,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.jsp">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -112,11 +112,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li class="active"><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="shop.jsp">Shop page</a></li>
+                        <li><a href="single-product.jsp">Single product</a></li>
+                        <li class="active"><a href="cart.jsp">Cart</a></li>
+                        <li><a href="checkout.jsp">Checkout</a></li>
                         <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li>
@@ -156,28 +156,28 @@
                         <h2 class="sidebar-title">Products</h2>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <h2><a href="single-product.jsp">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$800.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <h2><a href="single-product.jsp">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$800.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <h2><a href="single-product.jsp">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$800.00</del>
                             </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <h2><a href="single-product.jsp">Sony Smart TV - 2015</a></h2>
                             <div class="product-sidebar-price">
                                 <ins>$700.00</ins> <del>$800.00</del>
                             </div>                             
@@ -214,19 +214,19 @@
                                     <tbody>
                                         <tr class="cart_item">
                                             <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="#">Ã—</a> 
+                                                <a title="Remove this item" class="remove" href="#">×</a> 
                                             </td>
 
                                             <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
+                                                <a href="single-product.jsp"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
                                             </td>
 
                                             <td class="product-name">
-                                                <a href="single-product.html">Ship Your Idea</a> 
+                                                <a href="single-product.jsp">Ship Your Idea</a> 
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">Â£15.00</span> 
+                                                <span class="amount">£15.00</span> 
                                             </td>
 
                                             <td class="product-quantity">
@@ -238,7 +238,7 @@
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount">Â£15.00</span> 
+                                                <span class="amount">£15.00</span> 
                                             </td>
                                         </tr>
                                         <tr>
@@ -263,23 +263,23 @@
                                 <h2>You may be interested in...</h2>
                                 <ul class="products">
                                     <li class="product">
-                                        <a href="single-product.html">
+                                        <a href="single-product.jsp">
                                             <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">
                                             <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">Â£20.00</span></span>
+                                            <span class="price"><span class="amount">£20.00</span></span>
                                         </a>
 
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.jsp">Select options</a>
                                     </li>
 
                                     <li class="product">
-                                        <a href="single-product.html">
+                                        <a href="single-product.jsp">
                                             <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-4.jpg">
                                             <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">Â£20.00</span></span>
+                                            <span class="price"><span class="amount">£20.00</span></span>
                                         </a>
 
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.jsp">Select options</a>
                                     </li>
                                 </ul>
                             </div>
@@ -292,7 +292,7 @@
                                     <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
-                                            <td><span class="amount">Â£15.00</span></td>
+                                            <td><span class="amount">£15.00</span></td>
                                         </tr>
 
                                         <tr class="shipping">
@@ -302,7 +302,7 @@
 
                                         <tr class="order-total">
                                             <th>Order Total</th>
-                                            <td><strong><span class="amount">Â£15.00</span></strong> </td>
+                                            <td><strong><span class="amount">£15.00</span></strong> </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -316,8 +316,8 @@
 
                                 <p class="form-row form-row-wide">
                                 <select rel="calc_shipping_state" class="country_to_state" id="calc_shipping_country" name="calc_shipping_country">
-                                    <option value="">Select a countryâ€¦</option>
-                                    <option value="AX">Ã…land Islands</option>
+                                    <option value="">Select a country?</option>
+                                    <option value="AX">Åland Islands</option>
                                     <option value="AF">Afghanistan</option>
                                     <option value="AL">Albania</option>
                                     <option value="DZ">Algeria</option>
@@ -374,7 +374,7 @@
                                     <option value="CR">Costa Rica</option>
                                     <option value="HR">Croatia</option>
                                     <option value="CU">Cuba</option>
-                                    <option value="CW">CuraÃ‡ao</option>
+                                    <option value="CW">CuraÇao</option>
                                     <option value="CY">Cyprus</option>
                                     <option value="CZ">Czech Republic</option>
                                     <option value="DK">Denmark</option>
@@ -497,8 +497,8 @@
                                     <option value="RO">Romania</option>
                                     <option value="RU">Russia</option>
                                     <option value="RW">Rwanda</option>
-                                    <option value="ST">SÃ£o TomÃ© and PrÃ­ncipe</option>
-                                    <option value="BL">Saint BarthÃ©lemy</option>
+                                    <option value="ST">São Tomé and Príncipe</option>
+                                    <option value="BL">Saint Barthélemy</option>
                                     <option value="SH">Saint Helena</option>
                                     <option value="KN">Saint Kitts and Nevis</option>
                                     <option value="LC">Saint Lucia</option>

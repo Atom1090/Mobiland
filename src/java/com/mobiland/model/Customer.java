@@ -33,7 +33,7 @@ public class Customer implements Serializable {
    
     private String cash;
     
-    private Date birthdate;
+    private String birthdate;
    
     private String job;
     
@@ -49,7 +49,7 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public Customer(Integer id, String fName, String lName, String email, byte[] image, String phone, String password, String cash, Date birthdate, String job, String address, String interest) {
+    public Customer(Integer id, String fName, String lName, String email, byte[] image, String phone, String password, String cash, String birthdate, String job, String address, String interest) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -128,11 +128,11 @@ public class Customer implements Serializable {
         this.cash = cash;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -183,7 +183,9 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mobiland.model.Customer[ id=" + id + " ]";
+        return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
     
 }
