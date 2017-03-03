@@ -10,6 +10,9 @@ import com.mobiland.model.DBConnection;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +28,7 @@ import javax.servlet.http.Part;
 public class SignupServlet extends HttpServlet {
 
    
-    DBConnection db=new DBConnection();
+    
     Customer customer;
    
     @Override
@@ -40,7 +43,14 @@ public class SignupServlet extends HttpServlet {
             throws ServletException, IOException {
         
         PrintWriter out=response.getWriter();
-        
+        //shaaban
+        DBConnection db=null;
+        try {
+            db = new DBConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //shaaban
         String address=request.getParameter("billing_country");
         String fname=request.getParameter("billing_first_name");
         String lname=request.getParameter("billing_last_name");

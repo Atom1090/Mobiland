@@ -1,3 +1,5 @@
+<%@page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -9,7 +11,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product Page - Ustora Demo</title>
+    <title>User profile</title>
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -40,8 +42,41 @@
   </head>
   <body>
    
+    <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                   <div class="user-menu">
+                        <ul>
+                            <li><a href="profile.jsp"><i class="fa fa-user"></i> My Account</a></li>
+                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+                            <li><a href="cart.jsp"><i class="fa fa-user"></i> My Cart</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div> <!-- End header area -->
     
-    
+    <div class="site-branding-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+                        <h1><a href="./"><img src="img/logo.png"></a></h1>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        <a href="cart.jsp">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End site branding area -->
     
     <div class="mainmenu-area">
         <div class="container">
@@ -56,11 +91,12 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="adminIndex.html">Home</a></li>
-                        <li class="active"><a href="adminShop.html">Shop page</a></li>
-                        <li><a href="adminsingle-product.html">Single product</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li class="active"><a href="shop.jsp">Shop page</a></li>
+                        <li><a href="single-product.jsp">Single product</a></li>
+                        <li><a href="cart.jsp">Cart</a></li>
+                        <li><a href="signup.jsp">Sign up</a></li>
                        
-                    
                     </ul>
                 </div>  
             </div>
@@ -72,7 +108,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Profile :D </h2>
+                        <h2>Profile</h2>
                    
  </div>
 		  
@@ -81,26 +117,87 @@
         </div>
     </div>
     
-    <center>
+    
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
-               
+                <div class="col-md-4">
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title">Search Products</h2>
+                        <form action="">
+                            <input type="text" placeholder="Search products...">
+                            <input type="submit" value="Search">
+                        </form>
+                    </div>
+                    
+                   <div class="single-sidebar">
+                        <h2 class="sidebar-title">Products</h2>
+                        <div class="thubmnail-recent">
+                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                            <h2><a href="">Sony Smart TV - 2015</a></h2>
+                            <div class="product-sidebar-price">
+                                <ins>$700.00</ins> <del>$100.00</del>
+                            </div>                             
+                        </div>
+                        <div class="thubmnail-recent">
+                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                            <h2><a href="">Sony Smart TV - 2015</a></h2>
+                            <div class="product-sidebar-price">
+                                <ins>$700.00</ins> <del>$100.00</del>
+                            </div>                             
+                        </div>
+                        <div class="thubmnail-recent">
+                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                            <h2><a href="">Sony Smart TV - 2015</a></h2>
+                            <div class="product-sidebar-price">
+                                <ins>$700.00</ins> <del>$100.00</del>
+                            </div>                             
+                        </div>
+                        <div class="thubmnail-recent">
+                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                            <h2><a href="">Sony Smart TV - 2015</a></h2>
+                            <div class="product-sidebar-price">
+                                <ins>$700.00</ins> <del>$100.00</del>
+                            </div>                             
+                        </div>
+                    </div>
+                    
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title">Recent Posts</h2>
+                        <ul>
+                            <li><a href="">Sony Smart TV - 2015</a></li>
+                            <li><a href="">Sony Smart TV - 2015</a></li>
+                            <li><a href="">Sony Smart TV - 2015</a></li>
+                            <li><a href="">Sony Smart TV - 2015</a></li>
+                            <li><a href="">Sony Smart TV - 2015</a></li>
+                        </ul>
+                    </div>
+                
+                       
+                                                    
+                      
+                    </div>
                   
                 
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
                         <div class="col-md-4">
-                    
+                        
+                      <form action="somechangephoto" > 
+
+                   <center><b><b></center><br><br><br>
+<img id="pic" class="img-responsive img-circle profile-image center-block" src="/home/shibo/Desktop/20170222_191550.jpg" alt="photo"  ><br>
+         <center>  <input type="submit" value="change picture"/>
+                    </div> </form>
                         </div>
                         
                         <div class="row">
                                <form class="well form-horizontal" action=" " method="post"  id="contact_form">
                     <fieldset>
                         <!-- Form Name -->
-                        <legend>edit  your data </legend>
+                        <legend>shibo altanany</legend>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label">Name</label>  
@@ -108,16 +205,24 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input name ="key" type="hidden"> 
-                                    <input id="fname" name ="first" type="text" placeholder="userName" required> 
+                                    <input id="fname" name ="first" type="text" placeholder="First Name" required> 
                                     
-                                   
+                                    <input id="lname" name ="last" type="text" placeholder="Last Name" required>
                                 </div>
                             </div>
                         </div>
                        
 
                         
-                        
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Phone</label>  
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                    <input id="phone" name="phone" type="tel" placeholder="(202) 555-5555" pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">email</label>  
                             <div class="col-md-4 inputGroupContainer">
@@ -129,11 +234,11 @@
                         </div>
                       
                         <div class="form-group">
-                            <label class="col-md-4 control-label">password</label>
+                            <label class="col-md-4 control-label">Address</label>
                             <div class="col-md-4 inputGroupContainer">
                                 <div class="input-group">
-                                    <span class="input-group-addon"></span>
-                                    <input id="password"  type="password" class="form-control" name="password"/>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <textarea id="address" class="form-control" name="address"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -152,69 +257,37 @@
                             </div>
                             
                             <div class="col-sm-6">
-  
-                                              <div role="tabpanel" class="tab-pane fade" id="profile">
-                                               
-                                            
-                                          
+                                <div class="product-inner">
+                                   <br>
+                                       
+                                 
+                                    
+                                   
+                                    
+                                    
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                <h2>Reviews</h2>
+                                                <div class="submit-review">
+                                                    <p><label for="name">Name</label> <input name="name" type="text"></p>
+                                                    <p><label for="email">Email</label> <input name="email" type="email"></p>
+                                                    <div class="rating-chooser">
+                                                        <p>Your rating</p>
+
+                                                        <div class="rating-wrap-post">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                                                    <p><input type="submit" value="Submit"></p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                        <div><form class="well form-horizontal" action=" " method="post"  id="contact_form">
-                    <fieldset>
-                        <!-- Form Name -->
-                        <legend>New Admin </legend>
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Name</label>  
-                            <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input name ="key" type="hidden"> 
-                                    <input id="fname" name ="first" type="text" placeholder="username" required> 
-                                  
-                                </div>
-                            </div>
-                        </div>
-                      
-
-                     
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">email</label>  
-                            <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                  <center>  <input id="email" name="email" type="email" required></center>
-                                </div>
-                            </div>
-                        </div>
-                       <div class="form-group">
-                            <label class="col-md-4 control-label">password</label>
-                            <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"></span>
-                                    <input id="email"  type="password" class="form-control" name="password"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">confirm password</label>
-                            <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"></span>
-                                    <input  id="email" type="password" class="form-control" name="confrim password"/>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Button -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label"></label>
-                            <div class="col-md-4">
-                                <input  id="add_contact_button" type="submit" value="Save Admin">
-                                 </div>
-                        </div>
-
-                    </fieldset>
-                </form></div></center>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -226,11 +299,17 @@
                                  
 
                                
-                              
+                                   
+                                <div class="single-product">
+                                                                       
+                            </div>
                         </div>
                     </div>                    
-          
-</center>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
@@ -239,7 +318,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
                         <h2>u<span>Stora</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        <p>uStora is one of the most prominent web sites in Egypt. We provide a wide variety of products that meet all needs and tastes.</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>

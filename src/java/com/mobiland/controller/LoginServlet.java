@@ -5,14 +5,17 @@
  */
 package com.mobiland.controller;
 
+import com.mobiland.model.Customer;
+import com.mobiland.model.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,31 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login-serv"})
 public class LoginServlet extends HttpServlet {
 
-	/**
-	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-	 * methods.
-	 *
-	 * @param request servlet request
-	 * @param response servlet response
-	 * @throws ServletException if a servlet-specific error occurs
-	 * @throws IOException if an I/O error occurs
-	 */
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		try (PrintWriter out = response.getWriter()) {
-			/* TODO output your page here. You may use following sample code. */
-			out.println("<!DOCTYPE html>");
-			out.println("<html>");
-			out.println("<head>");
-			out.println("<title>Servlet LoginServlet</title>");			
-			out.println("</head>");
-			out.println("<body>");
-			out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-			out.println("</body>");
-			out.println("</html>");
-		}
-	}
+	DBConnection conn;
 
 	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 	/**
@@ -72,12 +51,36 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Enumeration e = request.getParameterNames();
-		while(e.hasMoreElements())
+		String email = request.getParameter("userName");
+		String pass = request.getParameter("password");
+		String page = request.getParameter("page");
+		if(page != null && email != null && pass != null)
 		{
-			String p = (String)e.nextElement();
-			System.out.println((String)request.getParameter(p));
+			try
+			{
+				if(conn == null)
+					conn = new DBConnection();
+				int st = conn.sigIn(email, pass);
+				if(st == StatusHandler.SUCCESS)
+				{
+					Customer customer = conn.getCustomer(email);
+					if(customer != null)
+					{
+						HttpSession session = request.getSession(true);
+						session.setAttribute("customer", customer);
+						request.getRequestDispatcher("profile.jsp").forward(request, response);
+					}
+					else
+						response.sendRedirect(page + "?status=" + StatusHandler.ERR_DB_PROC);
+				}
+				response.sendRedirect(page + "?status=" + st);
+			} catch(SQLException ex)
+			{
+				response.sendRedirect(page + "?status=" + StatusHandler.ERR_DB_CONN);
+			}
 		}
+		else
+			response.sendRedirect(page + "?status=" + StatusHandler.ERR_LOGIN_DATA_MISS);
 	}
 
 	/**
