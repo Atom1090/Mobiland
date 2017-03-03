@@ -6,11 +6,7 @@
 package com.mobiland.admin.dataBase;
 
 import com.mobiland.model.Admin;
-<<<<<<< HEAD
-=======
 import java.io.IOException;
->>>>>>> 99fabb78bd797d33f87601e7437f2567fe762ebd
-import java.sql.Connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,11 +31,11 @@ public class DbOperationsAdmin {
 
     public void init() {
         usr = "root";
-<<<<<<< HEAD
+
         psw = "ROOT";
-=======
+
         psw = "root";
->>>>>>> 99fabb78bd797d33f87601e7437f2567fe762ebd
+
         drivermanager = "com.mysql.jdbc.Driver";
         url = "jdbc:mysql://localhost:3306/mobiland";
 
@@ -60,17 +56,8 @@ public class DbOperationsAdmin {
 
     public Admin loginAdmin(Admin admin) throws SQLException {
         Admin newadmin = null;
-<<<<<<< HEAD
-        String sql = "select * from admin where email =?";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.setString(1, admin.getEmail());
-        rs = pst.executeQuery();
-        while (rs.next()) {
-            newadmin = new Admin();
-            newadmin.setUsername(rs.getString(1));
-            newadmin.setEmail(rs.getString(2));
-            newadmin.setPassword(rs.getString(3));
-=======
+
+        
         String sql = "select * from admin where email =? and password =?";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, admin.getEmail());
@@ -82,13 +69,13 @@ public class DbOperationsAdmin {
             newadmin.setUsername(rs.getString(2));
             newadmin.setEmail(rs.getString(3));
             newadmin.setPassword(rs.getString(4));
->>>>>>> 99fabb78bd797d33f87601e7437f2567fe762ebd
+
         }
 
         return newadmin;
     }
 
-<<<<<<< HEAD
+
     public boolean signUp(Admin admin) throws SQLException {
 
         String sql = "insert into admin values()where email =?";
@@ -104,23 +91,10 @@ public class DbOperationsAdmin {
         }
     }
     
-    public boolean update(Admin admin) throws SQLException {
+  
+    
+    
 
-        String sql = "update admin set username =? , set password= ? where email =?";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.setString(1, admin.getUsername());
-        pst.setString(1, admin.getEmail());
-        pst.setString(1, admin.getPassword());
-        int i = pst.executeUpdate();
-        if (i > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
-    
-=======
 //    public boolean signUp(Admin admin) throws SQLException {
 //
 //        String sql = "insert into admin values()where email =?";
@@ -172,6 +146,5 @@ public class DbOperationsAdmin {
         }
 
     }
->>>>>>> 99fabb78bd797d33f87601e7437f2567fe762ebd
 
 }
