@@ -28,7 +28,7 @@ public class Admin implements Serializable {
         this.id = id;
     }
 
-    public Admin(Integer id, String username, String email, String password) {
+    public Admin(int id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;

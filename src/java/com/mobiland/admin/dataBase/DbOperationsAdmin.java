@@ -6,6 +6,7 @@
 package com.mobiland.admin.dataBase;
 
 import com.mobiland.model.Admin;
+import java.io.IOException;
 import java.sql.Connection;
 
 import java.sql.Connection;
@@ -58,6 +59,7 @@ public class DbOperationsAdmin {
         rs = pst.executeQuery();
         while (rs.next()) {
             newadmin = new Admin();
+            newadmin.setId(rs.getInt(1));
             newadmin.setUsername(rs.getString(2));
             newadmin.setEmail(rs.getString(3));
             newadmin.setPassword(rs.getString(4));
@@ -66,34 +68,53 @@ public class DbOperationsAdmin {
         return newadmin;
     }
 
-    public boolean signUp(Admin admin) throws SQLException {
-
-        String sql = "insert into admin values()where email =?";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.setString(1, admin.getUsername());
-        pst.setString(1, admin.getEmail());
-        pst.setString(1, admin.getPassword());
-        int i = pst.executeUpdate();
-        if (i > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    public boolean signUp(Admin admin) throws SQLException {
+//
+//        String sql = "insert into admin values()where email =?";
+//        PreparedStatement pst = con.prepareStatement(sql);
+//        pst.setString(1, admin.getUsername());
+//        pst.setString(1, admin.getEmail());
+//        pst.setString(1, admin.getPassword());
+//        int i = pst.executeUpdate();
+//        if (i > 0) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 
     public boolean update(Admin admin) throws SQLException {
 
-        String sql = "update admin set username =? , set password= ? where email =?";
+        String sql = "update admin set username =? , email=?, password= ? where id =?";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, admin.getUsername());
-        pst.setString(1, admin.getEmail());
-        pst.setString(1, admin.getPassword());
+        pst.setString(2, admin.getEmail());
+        pst.setString(3, admin.getPassword());
+        pst.setInt(4, admin.getId());
         int i = pst.executeUpdate();
         if (i > 0) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
+    }
+     public int insertAdmin(Admin admin) throws IOException {
+
+        int result = 0;
+
+        try {
+            PreparedStatement insert = con.prepareStatement("insert into admin(username,email,password) values(?,?,?)");
+           
+            insert.setString(1, admin.getUsername());
+            insert.setString(2, admin.getEmail());
+            insert.setString(3, admin.getPassword());
+            result = insert.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
 }

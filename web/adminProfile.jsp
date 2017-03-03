@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="product-bit-title text-center">
-                            <h2>Profile :D </h2>
+                            <h2>hello mr ${object.username} </h2>
 
                         </div>
 
@@ -99,19 +99,20 @@
                                 </div>
 
                                 <div class="row">
-                                    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+                                    <form class="well form-horizontal" action="UpdateAdmin" method="post"  id="contact_form">
                                         <fieldset>
                                             <!-- Form Name -->
-                                            
+
                                             <legend>edit  your data  </legend>
                                             <!-- Text input-->
                                             <div class="form-group">
+                                                <!--  -->
                                                 <label class="col-md-4 control-label">Name</label>  
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                        <input name ="key" type="hidden"> 
-                                                        <input id="fname" name ="first" type="text" placeholder="userName" required> 
+                                                        <input name ="id" type="hidden" value=${object.id}>
+                                                        <input id="fname" name ="username" type="text" placeholder="userName" required value=${object.username}  > 
 
 
                                                     </div>
@@ -126,7 +127,7 @@
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                                        <input id="email" name="email" type="email" value=${object.email}+"" required>
+                                                        <input id="email" name="email" type="email" required value=${object.email} >
                                                     </div>
                                                 </div>
                                             </div>
@@ -136,7 +137,7 @@
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"></span>
-                                                        <input id="password"  type="password" class="form-control"  value=${object.password}+"" name="password"/>
+                                                        <input id="password"  type="password" class="form-control"  name="password" required value=${object.password} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -148,7 +149,7 @@
 
                                                 </div>
                                             </div>
-
+                                            ${flag}
                                         </fieldset>
                                     </form>
 
@@ -173,7 +174,7 @@
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                         <input name ="key" type="hidden"> 
-                                                        <input id="fname" name ="username" type="text" placeholder="username" required> 
+                                                        <input id="fname" name ="username1" type="text" placeholder="username" required> 
 
                                                     </div>
                                                 </div>
@@ -186,7 +187,7 @@
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                                        <center>  <input id="email" name="email" type="email" required></center>
+                                                        <center>  <input id="email" name="email1"  placeholder="email" type="email" required></center>
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,7 +196,7 @@
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"></span>
-                                                        <input id="email"  type="password" class="form-control" name="password"/>
+                                                        <input id="email"  type="password" class="form-control" name="password1"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,7 +205,7 @@
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"></span>
-                                                        <input  id="email" type="password" class="form-control" name="confrim password"/>
+                                                        <input  id="email" type="password" class="form-control" name="confrimpassword1"/>
                                                     </div>
                                                 </div>
                                             </div>
