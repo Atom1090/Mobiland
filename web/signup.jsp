@@ -1,5 +1,8 @@
-<%@page session="false"%>
+<!--Added by Hatem Alamir-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="com.mobiland.controller.StatusHandler" %>
+<!--End addition by Hatem Alamir-->
+
 <!DOCTYPE html>
 <!--
 	ustora by freshdesignweb.com
@@ -37,20 +40,17 @@
     <![endif]-->
   </head>
   <body>
-   
-      <c:if test="${not empty param.status}"> 
-          <div class="alert alert-success">
-              <strong>Success!</strong> You should <a data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top">login now!</a>.
-          </div>
-      </c:if>
+
     <div class="header-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="user-menu">
+						
 <!--edited by Hatem Al-Amir
 	adding th login form to the top shortcut bar
 -->
+
                         <ul>
 							<c:choose>
 								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
@@ -85,23 +85,23 @@
 								<a  data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top"><i class="fa fa-user"></i> Login</a>
 							</li>
 							
-							<form id="login-form-wrap-top" class="login collapse" method="post">
+							<form id="login-form-wrap-top" class="login collapse" method="post" action="login-serv?page=signup.jsp">
 								<p class="form-row form-row-first">
 									<label for="username">Username or email <span class="required">*</span>
 									</label>
-									<input type="text" id="username-top" name="username" class="input-text">
+									<input type="text" id="username-top" name="userName" class="input-text"  required="true" pattern= "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
 								</p>
 								<p class="form-row form-row-last">
 									<label for="password">Password <span class="required">*</span>
 									</label>
-									<input type="password" id="password-top" name="password" class="input-text">
+									<input type="password" id="password-top" name="password" class="input-text" required="true" />
 								</p>
 								<div class="clear"></div>
 
 
 								<p class="form-row">
-									<input type="submit" value="Login" name="login" class="button">
-									<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
+									<input type="submit" value="Login" class="button">
+									<label class="inline" for="rememberme"><input type="checkbox" id="rememberme-top" name="rememberMe"> Remember me </label>
 								</p>
 
 								<div class="clear"></div>
@@ -125,14 +125,42 @@
 								</div>
 							</div>
                         </ul>
-<!--end of edited part by Hatem Al-Amir-->
                     </div>
                 </div>
-                
             </div>
         </div>
     </div> <!-- End header area -->
     
+	<c:if test="${not empty param.status}">
+		<c:choose>
+			<c:when test="${param.status eq StatusHandler.SUCCESS}"> 
+				<div class="alert alert-success">
+					<strong>Success!</strong> You should <a data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top">login now!</a>.
+				</div>
+			</c:when>
+			
+			<c:when test="${param.status eq StatusHandler.ERR_DB_CONN}">
+				<div class="alert alert-danger">
+					<strong>Error!</strong> Internal database error.
+				</div>
+			</c:when>
+			
+			<c:when test="${param.status eq StatusHandler.ERR_LOGIN_EMAIL}">
+				<div class="alert alert-danger">
+					<strong>Error!</strong> Email does not exist.
+				</div>
+			</c:when>
+			
+			<c:when test="${param.status eq StatusHandler.ERR_LOGIN_PASSWD}">
+				<div class="alert alert-danger">
+					<strong>Error!</strong> Password is wrong.
+				</div>
+			</c:when>
+		</c:choose>
+    </c:if>
+	
+<!--end of edited part by Hatem Al-Amir-->
+
     <div class="site-branding-area">
         <div class="container">
             <div class="row">
@@ -290,7 +318,7 @@
                                                     </label>
                                                     <select class="country_to_state country_select" id="billing_country" name="billing_country">
                                                         <option value="">Select a country?</option>
-                                                        <option value="AX">≈land Islands</option>
+                                                        <option value="AX">√Öland Islands</option>
                                                         <option value="AF">Afghanistan</option>
                                                         <option value="AL">Albania</option>
                                                         <option value="DZ">Algeria</option>
@@ -347,7 +375,7 @@
                                                         <option value="CR">Costa Rica</option>
                                                         <option value="HR">Croatia</option>
                                                         <option value="CU">Cuba</option>
-                                                        <option value="CW">Cura«ao</option>
+                                                        <option value="CW">Cura√áao</option>
                                                         <option value="CY">Cyprus</option>
                                                         <option value="CZ">Czech Republic</option>
                                                         <option value="DK">Denmark</option>
@@ -470,8 +498,8 @@
                                                         <option value="RO">Romania</option>
                                                         <option value="RU">Russia</option>
                                                         <option value="RW">Rwanda</option>
-                                                        <option value="ST">S„o TomÈ and PrÌncipe</option>
-                                                        <option value="BL">Saint BarthÈlemy</option>
+                                                        <option value="ST">S√£o Tom√© and Pr√≠ncipe</option>
+                                                        <option value="BL">Saint Barth√©lemy</option>
                                                         <option value="SH">Saint Helena</option>
                                                         <option value="KN">Saint Kitts and Nevis</option>
                                                         <option value="LC">Saint Lucia</option>
