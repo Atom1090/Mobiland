@@ -318,7 +318,7 @@
                                                     </label>
                                                     <select class="country_to_state country_select" id="billing_country" name="billing_country">
                                                         <option value="">Select a country?</option>
-                                                        <option value="AX">Åland Islands</option>
+                                                        <option value="AX">\C5land Islands</option>
                                                         <option value="AF">Afghanistan</option>
                                                         <option value="AL">Albania</option>
                                                         <option value="DZ">Algeria</option>
@@ -375,7 +375,7 @@
                                                         <option value="CR">Costa Rica</option>
                                                         <option value="HR">Croatia</option>
                                                         <option value="CU">Cuba</option>
-                                                        <option value="CW">CuraÇao</option>
+                                                        <option value="CW">Cura\C7ao</option>
                                                         <option value="CY">Cyprus</option>
                                                         <option value="CZ">Czech Republic</option>
                                                         <option value="DK">Denmark</option>
@@ -498,8 +498,8 @@
                                                         <option value="RO">Romania</option>
                                                         <option value="RU">Russia</option>
                                                         <option value="RW">Rwanda</option>
-                                                        <option value="ST">São Tomé and Príncipe</option>
-                                                        <option value="BL">Saint Barthélemy</option>
+                                                        <option value="ST">S\E3o Tom\E9 and Pr\EDncipe</option>
+                                                        <option value="BL">Saint Barth\E9lemy</option>
                                                         <option value="SH">Saint Helena</option>
                                                         <option value="KN">Saint Kitts and Nevis</option>
                                                         <option value="LC">Saint Lucia</option>
