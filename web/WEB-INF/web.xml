@@ -8,6 +8,10 @@
         <servlet-name>AdminLogIn</servlet-name>
         <servlet-class>com.mobiland.admin.controller.AdminLogIn</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminSignup</servlet-name>
+        <servlet-class>com.mobiland.admin.controller.AdminSignup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignupServlet</servlet-name>
         <url-pattern>/SignupServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>AdminLogIn</servlet-name>
         <url-pattern>/AdminLogIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminSignup</servlet-name>
+        <url-pattern>/AdminSignup</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -102,7 +102,8 @@
                                     <form class="well form-horizontal" action=" " method="post"  id="contact_form">
                                         <fieldset>
                                             <!-- Form Name -->
-                                            <legend>edit  your data </legend>
+                                            
+                                            <legend>edit  your data  </legend>
                                             <!-- Text input-->
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Name</label>  
@@ -125,7 +126,7 @@
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                                        <input id="email" name="email" type="email" required>
+                                                        <input id="email" name="email" type="email" value=${object.email}+"" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,7 +136,7 @@
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"></span>
-                                                        <input id="password"  type="password" class="form-control" name="password"/>
+                                                        <input id="password"  type="password" class="form-control"  value=${object.password}+"" name="password"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -161,7 +162,7 @@
 
                                     </div>
                                 </div>
-                                <div><form class="well form-horizontal" action=" " method="post"  id="contact_form">
+                                <div><form class="well form-horizontal" action="AdminSignup" method="post"  id="contact_form">
                                         <fieldset>
                                             <!-- Form Name -->
                                             <legend>New Admin </legend>
@@ -172,7 +173,7 @@
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                         <input name ="key" type="hidden"> 
-                                                        <input id="fname" name ="first" type="text" placeholder="username" required> 
+                                                        <input id="fname" name ="username" type="text" placeholder="username" required> 
 
                                                     </div>
                                                 </div>

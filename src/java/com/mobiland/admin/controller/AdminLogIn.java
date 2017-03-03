@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -135,7 +136,7 @@ public class AdminLogIn extends HttpServlet {
                         + "                    <div class=\"product-bit-title text-center\">\n"
                         + "                        <h2></h2>\n"
                         + "<center>\n"
-                        + "u have error in login process"
+                        + "<b>u have error in login process<b>"
                         + "<div id=\"for\">\n"
                         + " <form action=\"AdminLogIn\"  method=\"post\">\n"
                         + "  <header>Login</header>\n"
@@ -263,8 +264,10 @@ public class AdminLogIn extends HttpServlet {
             if (a != null) {
 
                 request.setAttribute("object", a);
-                //getServletContext().getRequestDispatcher("adminProfile.jsp").include(request, response);
-                response.sendRedirect("adminProfile.jsp");
+                 RequestDispatcher dispatcher = request
+                       .getRequestDispatcher("/adminProfile.jsp"); 
+              dispatcher.forward(request, response);
+               // response.sendRedirect("adminProfile.jsp");
             } else {
                 response.sendRedirect("AdminLogIn?error=shibo");
             }
