@@ -80,23 +80,23 @@
 								<a  data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top"><i class="fa fa-user"></i> Login</a>
 							</li>
 							
-							<form id="login-form-wrap-top" class="login collapse" method="post">
+							<form id="login-form-wrap-top" class="login collapse" method="post" action="login-serv">
 								<p class="form-row form-row-first">
 									<label for="username">Username or email <span class="required">*</span>
 									</label>
-									<input type="text" id="username-top" name="username" class="input-text">
+									<input type="text" id="username-top" name="userName" class="input-text"  required="true" pattern= "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
 								</p>
 								<p class="form-row form-row-last">
 									<label for="password">Password <span class="required">*</span>
 									</label>
-									<input type="password" id="password-top" name="password" class="input-text">
+									<input type="password" id="password-top" name="password" class="input-text" required="true" />
 								</p>
 								<div class="clear"></div>
 
 
 								<p class="form-row">
 									<input type="submit" value="Login" name="login" class="button">
-									<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
+									<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberMe"> Remember me </label>
 								</p>
 
 								<div class="clear"></div>
