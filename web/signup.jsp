@@ -38,6 +38,11 @@
   </head>
   <body>
    
+      <c:if test="${not empty param.status}"> 
+          <div class="alert alert-success">
+              <strong>Success!</strong> You should <a data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top">login now!</a>.
+          </div>
+      </c:if>
     <div class="header-area">
         <div class="container">
             <div class="row">

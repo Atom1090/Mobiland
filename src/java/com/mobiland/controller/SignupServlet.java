@@ -68,8 +68,8 @@ public class SignupServlet extends HttpServlet {
         InputStream is = part.getInputStream();
         
         db.insertUser(customer,part);
-        
-        response.sendRedirect("signup.jsp");
+        String status="success";
+        response.sendRedirect("signup.jsp?status="+status);
     }
 
   
