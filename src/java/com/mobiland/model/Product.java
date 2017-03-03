@@ -128,7 +128,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mobiland.model.Product[ productId=" + productId + " ]";
+        return "Product{" + "productId=" + productId + ", name=" + name + ", desc=" + desc + ", image=" + image + ", serialNumber=" + serialNumber + ", price=" + price + ", quantity=" + quantity + '}';
     }
-    
+
 }
