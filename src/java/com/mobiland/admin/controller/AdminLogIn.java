@@ -269,7 +269,12 @@ public class AdminLogIn extends HttpServlet {
               dispatcher.forward(request, response);
                // response.sendRedirect("adminProfile.jsp");
             } else {
-                response.sendRedirect("AdminLogIn?error=shibo");
+                System.out.println("wrong");
+                request.setAttribute("login", "email or password wrong try again");
+                RequestDispatcher dispatcher1 = request
+                       .getRequestDispatcher("/AdminIndex.jsp"); 
+              dispatcher1.forward(request, response);
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(AdminLogIn.class.getName()).log(Level.SEVERE, null, ex);

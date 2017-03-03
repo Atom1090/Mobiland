@@ -53,9 +53,10 @@ public class DbOperationsAdmin {
 
     public Admin loginAdmin(Admin admin) throws SQLException {
         Admin newadmin = null;
-        String sql = "select * from admin where email =?";
+        String sql = "select * from admin where email =? and password =?";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, admin.getEmail());
+        pst.setString(2, admin.getPassword());
         rs = pst.executeQuery();
         while (rs.next()) {
             newadmin = new Admin();
@@ -82,7 +83,6 @@ public class DbOperationsAdmin {
 //            return true;
 //        }
 //    }
-
     public boolean update(Admin admin) throws SQLException {
 
         String sql = "update admin set username =? , email=?, password= ? where id =?";
@@ -98,23 +98,27 @@ public class DbOperationsAdmin {
             return false;
         }
     }
-     public int insertAdmin(Admin admin) throws IOException {
+
+    public boolean insertAdmin(Admin admin) throws IOException {
 
         int result = 0;
 
         try {
             PreparedStatement insert = con.prepareStatement("insert into admin(username,email,password) values(?,?,?)");
-           
+
             insert.setString(1, admin.getUsername());
             insert.setString(2, admin.getEmail());
             insert.setString(3, admin.getPassword());
             result = insert.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        if (result > 0) {
+            return true;
+        } else {
+            return false;
+        }
 
-        return result;
     }
 
 }

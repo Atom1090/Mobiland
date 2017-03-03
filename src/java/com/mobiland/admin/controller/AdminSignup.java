@@ -9,6 +9,7 @@ import com.mobiland.admin.dataBase.DbOperationsAdmin;
 import com.mobiland.model.Admin;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -72,9 +73,25 @@ public class AdminSignup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Admin admin=new Admin(request.getParameter("username1"),request.getParameter("email1"), request.getParameter("confrim password1"));
+        Admin admin=new Admin(request.getParameter("username1"),request.getParameter("email1"), request.getParameter("confrimpassword1"));
         DbOperationsAdmin operation=new DbOperationsAdmin();
-        
+      boolean flag= operation.insertAdmin(admin);
+      if (flag) {
+                request.setAttribute("flag2", "inserted  successfully");
+               // request.setAttribute("object", admin);
+                RequestDispatcher dispatcher = request
+                        .getRequestDispatcher("/adminProfile.jsp");
+                dispatcher.forward(request, response);
+
+            } else {
+                request.setAttribute("flag2", "inserted falied try again");
+
+                RequestDispatcher dispatcher = request
+                        .getRequestDispatcher("/adminProfile.jsp");
+
+                dispatcher.forward(request, response);
+
+            }
         
     }
 

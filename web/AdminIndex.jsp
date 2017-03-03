@@ -78,7 +78,9 @@
                                         <input type="password" name="password"/>
                                         <div class="help"></div>
                                         <center><button>Login</button><center>
-                                                </form></div>
+                                                ${login}
+                                                </form>
+                                </div>
                                             </center>
                                             </div>
                                             </div>
