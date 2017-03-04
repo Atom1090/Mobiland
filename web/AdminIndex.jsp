@@ -90,7 +90,7 @@
 
 
 
-
+<!--
 
                                             <div class="footer-top-area">
                                                 <div class="zigzag-bottom"></div>
@@ -134,7 +134,7 @@
                                                 </div>
                                             </div> <!-- End footer top area -->
 
-                                            <div class="footer-bottom-area">
+                                           <!-- <div class="footer-bottom-area">
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col-md-8">
@@ -146,7 +146,7 @@
 
                                                     </div>
                                                 </div>
-                                            </div> <!-- End footer bottom area -->
+                                            </div>--> <!-- End footer bottom area -->
 
                                             <!-- Latest jQuery form server -->
                                             <script src="https://code.jquery.com/jquery.min.js"></script>

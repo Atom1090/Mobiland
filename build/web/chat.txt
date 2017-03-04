@@ -10,5 +10,8 @@ when he wrote e duplicate email )
 move between its screens quickly 
 
 )
+log out admin will delete session
+
+
 
 */
