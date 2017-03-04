@@ -5,6 +5,7 @@
  */
 package com.mobiland.admin.dataBase;
 
+import com.mobiland.model.Customer;
 import com.mobiland.model.Product;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.Part;
@@ -99,19 +101,101 @@ public class DbOperationsProduct {
         }
 
     }
-
-    public static void main(String[] args) throws IOException {
-        Product product = new Product();
-        product.setSerialNumber("2");
-        product.setName("dslkds");
-        product.setPrice(2);
-        product.setQuantity(25);
-        product.setDesc("dsjdks");
-DbOperationsProduct dp=new DbOperationsProduct();
+//////////////////////shibo
+    public ArrayList<Customer> getAllData() {
+        ArrayList<Customer> list = new ArrayList<>();
         try {
-            dp.addProduct2(product);
-        } catch (SQLException ex) {
-            Logger.getLogger(DbOperationsProduct.class.getName()).log(Level.SEVERE, null, ex);
+            PreparedStatement pst = con.prepareStatement("select * from customer");
+            // InputStream is = productImage.getInputStream();;
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Customer cust = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBytes(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
+                System.out.println("" + cust);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("" + e.getMessage());
         }
+        return list;
+
     }
+
+    public ArrayList<Product> getAllProduct() {
+        ArrayList<Product> list = new ArrayList<>();
+        try {
+            PreparedStatement pst = con.prepareStatement("select * from product");
+            // InputStream is = productImage.getInputStream();;
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Product product = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBytes(4), rs.getString(5), rs.getDouble(6), rs.getInt(7));
+                System.out.println("" + product);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("" + e.getMessage());
+        }
+        return list;
+
+    }
+
+    public boolean deleteProduct(int id) {
+        int flag = 0;
+        try {
+            PreparedStatement pst = con.prepareStatement("delete from product where productId=? ");
+            pst.setInt(1, id);
+            flag = pst.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("" + e.getMessage());
+        }
+
+        if (flag > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateProduct(Product product, Part p) {
+        int flag = 0;
+
+        try {
+            InputStream is = p.getInputStream();
+            PreparedStatement pst = con.prepareStatement("update product set price=? ,desc=?, image=? where productId=? ");
+            pst.setDouble(1, product.getPrice());
+            pst.setString(2, product.getDesc());
+            pst.setBinaryStream(3, is, (int) p.getSize());
+            flag = pst.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("" + e.getMessage());
+            return false;
+        }
+
+        if (flag > 0) {
+            return true;
+        }
+        return false;
+    }
+
+//    public static void main(String[] args) throws IOException {
+//        DbOperationsProduct dp = new DbOperationsProduct();
+//        System.out.println("" + dp.deleteProduct(14));
+//        dp.getAllProduct();
+//
+//    }
+////        Product product = new Product();
+////        product.setSerialNumber("2");
+////        product.setName("dslkds");
+////        product.setPrice(2);
+////        product.setQuantity(25);
+////        product.setDesc("dsjdks");
+////DbOperationsProduct dp=new DbOperationsProduct();
+////        try {
+////            dp.addProduct2(product);
+////        } catch (SQLException ex) {
+////            Logger.getLogger(DbOperationsProduct.class.getName()).log(Level.SEVERE, null, ex);
+////        }
+////    }
 }
