@@ -156,6 +156,12 @@
 					<strong>Error!</strong> Password is wrong.
 				</div>
 			</c:when>
+			
+			<c:when test="${param.status eq StatusHandler.ERR_SIGNUP_EMAIL}">
+				<div class="alert alert-danger">
+					<strong>Error!</strong> Email already exists.
+				</div>
+			</c:when>
 		</c:choose>
     </c:if>
 	

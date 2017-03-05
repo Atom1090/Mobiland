@@ -5,27 +5,38 @@
  */
 package com.mobiland.controller;
 
-import com.mobiland.model.Customer;
 import com.mobiland.model.DBConnection;
+import com.mobiland.model.Product;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author atom
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login-serv"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ProductServlet", urlPatterns = {"/product-serv"})
+public class ProductServlet extends HttpServlet {
 
-	DBConnection conn;
-
+	DBConnection conn  = null;
+	
+	@Override
+	public void init()
+	{
+		try{
+			conn = new DBConnection();
+		} catch(SQLException ex)
+		{
+			ex.printStackTrace();
+		}
+	}
 	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 	/**
 	 * Handles the HTTP <code>GET</code> method.
@@ -38,6 +49,59 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("application/octet-stream");
+		PrintWriter out = response.getWriter();
+		
+		String page = request.getParameter("page");
+		
+		try{
+			if(conn == null)
+				conn = new DBConnection();
+			
+			String id = (String)request.getParameter("id");
+			if(id != null)
+			{
+				int prodId = -1;
+				try{
+					prodId = Integer.parseInt(id);
+				} catch(NumberFormatException ex)
+				{
+					ex.printStackTrace();
+				}
+				Product product = conn.getProductById(prodId);
+				if(product != null)
+				{
+					out.print(product);
+				}
+			}
+
+			else
+			{
+				String category = request.getParameter("category");
+				String index = request.getParameter("index");
+				
+				if(category != null && index != null)
+				{
+					int i = 0;
+					try{
+					i = Integer.parseInt(index);
+					} catch(NumberFormatException ex)
+					{
+						ex.printStackTrace();
+					}
+					Product product = conn.getProductByCategory(category, i);
+					if(product != null)
+					{
+						out.print(product);
+					}
+				}
+			}
+		} catch(SQLException ex)
+		{
+			ex.printStackTrace();
+			if(page != null)
+				response.sendRedirect(page + "?status=" + StatusHandler.ERR_DB_PROC);
+		}
 	}
 
 	/**
@@ -51,37 +115,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String email = request.getParameter("userName");
-		String pass = request.getParameter("password");
-		String page = request.getParameter("page");
-		if(page != null && email != null && pass != null)
-		{
-			try
-			{
-				if(conn == null)
-					conn = new DBConnection();
-				int st = conn.sigIn(email, pass);
-				if(st == StatusHandler.SUCCESS)
-				{
-					Customer customer = conn.getCustomer(email);
-					if(customer != null)
-					{
-						HttpSession session = request.getSession(true);
-						session.setAttribute("customer", customer);
-						request.getRequestDispatcher("profile.jsp").forward(request, response);
-					}
-					else
-						response.sendRedirect(page + "?status=" + StatusHandler.ERR_DB_PROC);
-				}
-				else
-					response.sendRedirect(page + "?status=" + st);
-			} catch(SQLException ex)
-			{
-				response.sendRedirect(page + "?status=" + StatusHandler.ERR_DB_CONN);
-			}
-		}
-		else
-			response.sendRedirect(page + "?status=" + StatusHandler.ERR_LOGIN_DATA_MISS);
+		
 	}
 
 	/**
@@ -91,7 +125,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	@Override
 	public String getServletInfo() {
-		return "Try to sign the user in.";
+		return "Handles product loading and handling";
 	}// </editor-fold>
 
 }

@@ -280,19 +280,21 @@
                     <div class="latest-product">
                         <h2 class="section-title">Latest Products</h2>
                         <div class="product-carousel">
-                            <div class="single-product">
+                            <div class="single-product" name="product-div">
+								<c:set var="varX" value="ProductServlet?category=latest&index=1" />
+								
                                 <div class="product-f-image">
-                                    <img src="img/product-1.jpg" alt="">
+                                    <img src="img/product-1.jpg" alt="" name="product-image">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.jsp" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="#" class="add-to-cart-link" name="product-add"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.jsp" class="view-details-link" name="product-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
                                 
-                                <h2><a href="single-product.jsp">Samsung Galaxy s5- 2015</a></h2>
+                                <h2 name="product-name"><a href="single-product.jsp">Samsung</a></h2>
                                 
                                 <div class="product-carousel-price">
-                                    <ins>$700.00</ins> <del>$100.00</del>
+                                    <ins name="product-price">$700.00</ins> <del>$100.00</del>
                                 </div> 
                             </div>
                             <div class="single-product">
@@ -649,5 +651,6 @@
     <!-- Slider -->
     <script type="text/javascript" src="js/bxslider.min.js"></script>
 	<script type="text/javascript" src="js/script.slider.js"></script>
+	<script type="text/javascript" src="js/product.js"></script>
   </body>
 </html>
