@@ -7,29 +7,27 @@ package com.mobiland.model;
 
 import java.io.Serializable;
 
-
 /**
  *
  * @author shibo
  */
-
 public class Product implements Serializable {
+
     private static final long serialVersionUID = 1L;
-   
+
     private Integer productId;
-    
+
     private String name;
-  
+
     private String desc;
-    
+
     private byte[] image;
-   
+
     private String serialNumber;
-    
+
     private double price;
-    
+
     private int quantity;
-  
 
     public Product() {
     }
@@ -44,6 +42,14 @@ public class Product implements Serializable {
         this.desc = desc;
         this.image = image;
         this.serialNumber = serialNumber;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public Product(Integer productId, String name, String desc, double price, int quantity) {
+        this.productId = productId;
+        this.name = name;
+        this.desc = desc;
         this.price = price;
         this.quantity = quantity;
     }
@@ -103,8 +109,6 @@ public class Product implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-   
 
     @Override
     public int hashCode() {

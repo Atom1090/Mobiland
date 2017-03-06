@@ -102,6 +102,7 @@ public class DbOperationsProduct {
 
     }
 //////////////////////shibo
+
     public ArrayList<Customer> getAllData() {
         ArrayList<Customer> list = new ArrayList<>();
         try {
@@ -112,6 +113,7 @@ public class DbOperationsProduct {
             while (rs.next()) {
                 Customer cust = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBytes(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
                 System.out.println("" + cust);
+                list.add(cust);
             }
 
         } catch (SQLException e) {
@@ -131,6 +133,7 @@ public class DbOperationsProduct {
             while (rs.next()) {
                 Product product = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBytes(4), rs.getString(5), rs.getDouble(6), rs.getInt(7));
                 System.out.println("" + product);
+                list.add(product);
             }
 
         } catch (SQLException e) {
@@ -162,10 +165,14 @@ public class DbOperationsProduct {
 
         try {
             InputStream is = p.getInputStream();
-            PreparedStatement pst = con.prepareStatement("update product set price=? ,desc=?, image=? where productId=? ");
+            PreparedStatement pst = con.prepareStatement("update product set `price`=? ,`desc`=?, `image`=? ,`quantity`=? where `productId`=? ");
             pst.setDouble(1, product.getPrice());
             pst.setString(2, product.getDesc());
             pst.setBinaryStream(3, is, (int) p.getSize());
+            pst.setInt(4, product.getQuantity());
+            pst.setInt(5, product.getProductId());
+                    
+                    
             flag = pst.executeUpdate();
 
         } catch (Exception e) {
@@ -198,4 +205,19 @@ public class DbOperationsProduct {
 ////            Logger.getLogger(DbOperationsProduct.class.getName()).log(Level.SEVERE, null, ex);
 ////        }
 ////    }
+    public Product searchProduct(int id) {
+        Product product = null;
+        try {
+            PreparedStatement pst = con.prepareStatement("select * from product  where productId=? ");
+            pst.setDouble(1, id);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                product = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBytes(4), rs.getString(5), rs.getDouble(6), rs.getInt(7));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbOperationsProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
 }

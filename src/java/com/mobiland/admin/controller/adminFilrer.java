@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author shibo
  */
-@WebFilter(filterName = "adminFilrer", urlPatterns = {"/AdminEditProduct.jsp", "/AdminAddProduct.jsp", "/adminProfile.jsp"})
+@WebFilter(filterName = "adminFilrer", urlPatterns = { "/AdminAddProduct.jsp", "/adminProfile.jsp"})
 public class adminFilrer implements Filter {
 
     private static final boolean debug = true;
@@ -104,11 +104,15 @@ public class adminFilrer implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
+        System.out.println("requeeeest"+request.getLocalAddr());
+        
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
         try {
             Admin admin = (Admin) session.getAttribute("admin");
+            
             if (session.getAttribute("admin") != null) {
+                req.setAttribute("object", admin);
                 chain.doFilter(request, response);
 
            }
