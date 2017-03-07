@@ -45,7 +45,7 @@ public class AdminLogIn extends HttpServlet {
                         .getRequestDispatcher("/adminProfile.jsp");
 
                 HttpSession session = request.getSession();
-                session.setAttribute("admin", a);
+                session.setAttribute("object", a);
                 dispatcher.forward(request, response);
                 // response.sendRedirect("adminProfile.jsp");
             } else {

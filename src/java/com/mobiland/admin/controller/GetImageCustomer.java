@@ -33,8 +33,8 @@ public class GetImageCustomer extends HttpServlet {
     public void init() throws ServletException {
 
         try {
-
-            DBConnection c = new DBConnection();
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland", "root", "root");
             ps = con.prepareStatement("select * from customer where id=? ");
         } catch (Exception e) {
             e.getMessage();

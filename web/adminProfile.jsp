@@ -59,8 +59,9 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li><a href="#">Home</a></li>
-                            <li class="active"><a href="adminShop.html">Shop page</a></li>
-                            <li><a href="adminsingle-product.html">Single product</a></li>
+                            <li ><a href="AdminEditProduct.jsp">Shop info page</a></li>
+                            <li><a href="AdminShowCustomer.jsp">show customer</a></li>
+                            <li class="active"><a href="AdminAddProduct.jsp">Add Product</a></li>
 
 
                         </ul>

@@ -218,7 +218,7 @@ public class DBConnection {
                 customer.setPhone(rs.getString("phone"));
                 customer.setPassword(rs.getString("password"));
                 customer.setCash(rs.getDouble("cash"));
-                customer.setBirthdate(rs.getDate("birthdate").toString());
+                customer.setBirthdate(rs.getString("birthdate").toString());
                 customer.setJob(rs.getString("job"));
                 customer.setAddress(rs.getString("address"));
                 customer.setInterest(rs.getString("interest"));
