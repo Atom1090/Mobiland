@@ -5,8 +5,8 @@
  */
 package com.mobiland.admin.controller;
 
-import com.mobiland.admin.dataBase.DbOperationsAdmin;
 import com.mobiland.model.Admin;
+import com.mobiland.model.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -38,7 +38,7 @@ public class AdminSignup extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdminSignup</title>");            
+            out.println("<title>Servlet AdminSignup</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AdminSignup at " + request.getContextPath() + "</h1>");
@@ -73,26 +73,30 @@ public class AdminSignup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Admin admin=new Admin(request.getParameter("username1"),request.getParameter("email1"), request.getParameter("confrimpassword1"));
-        DbOperationsAdmin operation=new DbOperationsAdmin();
-      boolean flag= operation.insertAdmin(admin);
-      if (flag) {
-                request.setAttribute("flag2", "inserted  successfully");
-               // request.setAttribute("object", admin);
-                RequestDispatcher dispatcher = request
-                        .getRequestDispatcher("/adminProfile.jsp");
-                dispatcher.forward(request, response);
+        Admin admin = new Admin(request.getParameter("username1"), request.getParameter("email1"), request.getParameter("confrimpassword1"));
+        boolean flag = false;
+        try {
+            DBConnection operation = new DBConnection();
+            flag = operation.insertAdmin(admin);
+        } catch (Exception ex) {
+        }
+        if (flag) {
+            request.setAttribute("flag2", "inserted  successfully");
+            // request.setAttribute("object", admin);
+            RequestDispatcher dispatcher = request
+                    .getRequestDispatcher("/adminProfile.jsp");
+            dispatcher.forward(request, response);
 
-            } else {
-                request.setAttribute("flag2", "inserted falied try again");
+        } else {
+            request.setAttribute("flag2", "inserted falied try again");
 
-                RequestDispatcher dispatcher = request
-                        .getRequestDispatcher("/adminProfile.jsp");
+            RequestDispatcher dispatcher = request
+                    .getRequestDispatcher("/adminProfile.jsp");
 
-                dispatcher.forward(request, response);
+            dispatcher.forward(request, response);
 
-            }
-        
+        }
+
     }
 
     /**

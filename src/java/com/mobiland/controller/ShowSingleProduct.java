@@ -5,10 +5,14 @@
  */
 package com.mobiland.controller;
 
-import com.mobiland.admin.dataBase.DbOperationsProduct;
+
+import com.mobiland.model.DBConnection;
 import com.mobiland.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,10 +38,10 @@ public class ShowSingleProduct extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
-        DbOperationsProduct db = new DbOperationsProduct();
+        DBConnection db = new DBConnection();
         Product p =db.searchProduct(id);
          if (p != null) {
                 
@@ -71,7 +75,11 @@ public class ShowSingleProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowSingleProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -85,7 +93,11 @@ public class ShowSingleProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowSingleProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

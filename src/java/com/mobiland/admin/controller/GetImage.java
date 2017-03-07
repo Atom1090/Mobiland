@@ -5,6 +5,7 @@ package com.mobiland.admin.controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.mobiland.model.DBConnection;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -27,12 +28,8 @@ public class GetImage extends HttpServlet {
 
     public void init() throws ServletException {
 
-        String connectionURL = "jdbc:mysql://localhost:3306/mobiland";
-        String user = "root";
-        String pass = "root";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(connectionURL, user, pass);
+            DBConnection c = new DBConnection();
             ps = con.prepareStatement("select * from product where productId=? ");
         } catch (Exception e) {
             e.getMessage();
@@ -55,11 +52,10 @@ public class GetImage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("x");
 
-       
         try {
-            
-            System.out.println("the id now is "+id);
-            
+
+            System.out.println("the id now is " + id);
+
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
 

@@ -5,6 +5,7 @@
  */
 package com.mobiland.admin.controller;
 
+import com.mobiland.model.DBConnection;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -26,21 +27,19 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "GetImageCustomer", urlPatterns = {"/GetImageCustomer"})
 public class GetImageCustomer extends HttpServlet {
 
-   Connection con = null;
+    Connection con = null;
     PreparedStatement ps;
 
-  
     public void init() throws ServletException {
 
-             String connectionURL = "jdbc:mysql://localhost:3306/mobiland";
-        String user = "root";
-        String pass = "root";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection(connectionURL, user, pass);}
-        catch(Exception e){e.getMessage();}
-      
-        
+
+            DBConnection c = new DBConnection();
+            ps = con.prepareStatement("select * from customer where id=? ");
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
     }
 
     /**
@@ -57,10 +56,9 @@ public class GetImageCustomer extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("x");
-        
-       try{
 
-            ps = con.prepareStatement("select * from customer where id=? ");
+        try {
+
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
 
@@ -78,8 +76,7 @@ public class GetImageCustomer extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            
-            
+
         }
     }
 

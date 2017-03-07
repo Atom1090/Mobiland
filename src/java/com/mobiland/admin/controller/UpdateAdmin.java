@@ -5,8 +5,8 @@
  */
 package com.mobiland.admin.controller;
 
-import com.mobiland.admin.dataBase.DbOperationsAdmin;
 import com.mobiland.model.Admin;
+import com.mobiland.model.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -82,28 +82,34 @@ public class UpdateAdmin extends HttpServlet {
         // System.out.println(""+request.getParameter("username")+""+request.getParameter("email")+""+ request.getParameter("password"));
         Admin admin = new Admin(Integer.parseInt(request.getParameter("id")), request.getParameter("username"), request.getParameter("email"), request.getParameter("password"));
         System.out.println("hthththththth" + admin);
-        DbOperationsAdmin operation = new DbOperationsAdmin();
-        System.out.println("" + admin);
+        //
+
+        DBConnection operation;
+        boolean flag = false;
         try {
-            boolean flag = operation.update(admin);
-            if (flag) {
-                request.setAttribute("flag", "updated successfully");
-                request.setAttribute("object", admin);
-                RequestDispatcher dispatcher = request
-                        .getRequestDispatcher("/adminProfile.jsp");
-                dispatcher.forward(request, response);
-
-            } else {
-                request.setAttribute("flag", "updated falied try again");
-
-                RequestDispatcher dispatcher = request
-                        .getRequestDispatcher("/adminProfile.jsp");
-
-                dispatcher.forward(request, response);
-
-            }
+            operation = new DBConnection();
+            System.out.println("" + admin);
+            flag = operation.update(admin);
         } catch (SQLException ex) {
             Logger.getLogger(UpdateAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //
+        if (flag) {
+            request.setAttribute("flag", "updated successfully");
+            request.setAttribute("object", admin);
+            RequestDispatcher dispatcher = request
+                    .getRequestDispatcher("/adminProfile.jsp");
+            dispatcher.forward(request, response);
+
+        } else {
+            request.setAttribute("flag", "updated falied try again");
+
+            RequestDispatcher dispatcher = request
+                    .getRequestDispatcher("/adminProfile.jsp");
+
+            dispatcher.forward(request, response);
+
         }
     }
 

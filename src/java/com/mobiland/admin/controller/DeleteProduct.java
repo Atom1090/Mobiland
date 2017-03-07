@@ -6,7 +6,8 @@ package com.mobiland.admin.controller;
  * and open the template in the editor.
  */
 
-import com.mobiland.admin.dataBase.DbOperationsProduct;
+
+import com.mobiland.model.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +44,12 @@ public class DeleteProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        DbOperationsProduct dp=new DbOperationsProduct();
+        DBConnection dp=null;
+        try {
+            dp = new DBConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
      boolean x=  dp.deleteProduct(Integer.parseInt(request.getParameter("u")));
      if(x){
      response.sendRedirect("AdminEditProduct.jsp");}

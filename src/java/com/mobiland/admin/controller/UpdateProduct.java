@@ -5,10 +5,14 @@
  */
 package com.mobiland.admin.controller;
 
-import com.mobiland.admin.dataBase.DbOperationsProduct;
+
+import com.mobiland.model.DBConnection;
 import com.mobiland.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +45,12 @@ public class UpdateProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id=Integer.parseInt(request.getParameter("u"));
-        DbOperationsProduct dp=new  DbOperationsProduct();
+        DBConnection dp=null;
+        try {
+            dp = new  DBConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Product p=dp.searchProduct(id);
         
         request.setAttribute("product", p);
