@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author shibo
  */
-@WebFilter(filterName = "adminFilrer", urlPatterns = { "/AdminAddProduct.jsp", "/adminProfile.jsp"})
+@WebFilter(filterName = "adminFilrer", urlPatterns = {"/AdminShowCustomer.jsp","/AdminAddProduct.jsp", "/adminProfile.jsp","/AdminEditProduct.jsp","/AdminEditSingleProduct.jsp"})
 public class adminFilrer implements Filter {
 
     private static final boolean debug = true;
@@ -104,23 +104,42 @@ public class adminFilrer implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("requeeeest"+request.getLocalAddr());
-        
+        System.out.println("requeeeest" + request.getLocalAddr());
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
+
         try {
             Admin admin = (Admin) session.getAttribute("admin");
-            
-            if (session.getAttribute("admin") != null) {
-                req.setAttribute("object", admin);
-                chain.doFilter(request, response);
 
-           }
-               // else if (session.getAttribute("admin") == null) {
+            if (session.getAttribute("admin") != null) {
+                System.out.println("existed ");
+                req.setAttribute("object", admin);
+                if (request instanceof HttpServletRequest) {
+                    String url = ((HttpServletRequest) request).getRequestURL().toString();
+                    String queryString = ((HttpServletRequest) request).getQueryString();
+                      RequestDispatcher dispatcher1 = request
+                    .getRequestDispatcher(url + "?" + queryString);
+                      System.out.println("accessed");
+            dispatcher1.forward(request, response);
+                }else{
+                System.out.println("not existed");
+                 HttpServletResponse res = (HttpServletResponse) response;
+            request.setAttribute("login", "u must login first");
+            RequestDispatcher dispatcher1 = request
+                    .getRequestDispatcher("/AdminIndex.jsp");
+            dispatcher1.forward(req, res);
+            }
+                //chain.doFilter(request, response);
+
+            }}
+            // else if (session.getAttribute("admin") == null) {
 //
 //            }
-        } catch (Exception ex) {
-
+         catch (Exception ex) {
+          ex.printStackTrace();
+          
+//            System.out.println("exception i asmin filter"+ex.getMessage());
             HttpServletResponse res = (HttpServletResponse) response;
             request.setAttribute("login", "u must login first");
             RequestDispatcher dispatcher1 = request

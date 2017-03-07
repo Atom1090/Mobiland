@@ -58,7 +58,7 @@ public class GetImage extends HttpServlet {
        
         try {
             
-
+            System.out.println("the id now is "+id);
             
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();

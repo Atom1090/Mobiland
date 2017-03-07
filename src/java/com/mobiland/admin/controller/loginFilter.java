@@ -26,28 +26,29 @@ import javax.servlet.http.HttpSession;
  *
  * @author shibo
  */
-@WebFilter(filterName = "loginFilter", urlPatterns = {"/AdminIndex.jsp"})
+///AdminIndex.jsp"
+//@WebFilter(filterName = "loginFilter", urlPatterns = {})
 public class loginFilter implements Filter {
-    
+
     private static final boolean debug = true;
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-    
+
     public loginFilter() {
-    }    
-    
+    }
+
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
             log("loginFilter:DoBeforeProcessing");
         }
 
-	// Write code here to process the request and/or response before
+        // Write code here to process the request and/or response before
         // the rest of the filter chain is invoked.
-	// For example, a logging filter might log items on the request object,
+        // For example, a logging filter might log items on the request object,
         // such as the parameters.
 	/*
          for (Enumeration en = request.getParameterNames(); en.hasMoreElements(); ) {
@@ -65,8 +66,8 @@ public class loginFilter implements Filter {
          log(buf.toString());
          }
          */
-    }    
-    
+    }
+
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
@@ -75,7 +76,7 @@ public class loginFilter implements Filter {
 
 	// Write code here to process the request and/or response after
         // the rest of the filter chain is invoked.
-	// For example, a logging filter might log the attributes on the
+        // For example, a logging filter might log the attributes on the
         // request object after the request has been processed. 
 	/*
          for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
@@ -85,7 +86,7 @@ public class loginFilter implements Filter {
 
          }
          */
-	// For example, a filter might append something to the response.
+        // For example, a filter might append something to the response.
 	/*
          PrintWriter respOut = new PrintWriter(response.getWriter());
          respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
@@ -104,31 +105,37 @@ public class loginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpSession session = req.getSession(false);
-        try {
-            Admin admin = (Admin) session.getAttribute("admin");
-            if (session.getAttribute("admin") != null) {
-                HttpServletResponse res = (HttpServletResponse) response;
-            request.setAttribute("object",admin);
-            RequestDispatcher dispatcher1 = request
-                    .getRequestDispatcher("/adminProfile.jsp");
-            dispatcher1.forward(req, res);
-               // chain.doFilter(request, response);
-
-           }
-               // else if (session.getAttribute("admin") == null) {
+//        String url = null;
+//        String queryString = null;
+//        HttpServletRequest req = (HttpServletRequest) request;
+//        HttpSession session = req.getSession(false);
+//        if (request instanceof HttpServletRequest) {
+//            url = ((HttpServletRequest) request).getRequestURL().toString();
+//            queryString = ((HttpServletRequest) request).getQueryString();
+//        }
+//        try {
+//            Admin admin = (Admin) session.getAttribute("admin");
+//            if (session.getAttribute("admin") != null) {
+//                HttpServletResponse res = (HttpServletResponse) response;
+//                request.setAttribute("object", admin);
+//                RequestDispatcher dispatcher1 = request
+//                        .getRequestDispatcher(url + "?" + queryString);
+//                dispatcher1.forward(req, res);
+//                // chain.doFilter(request, response);
 //
 //            }
-        } catch (Exception ex) {
-            chain.doFilter(request, response);
-//            HttpServletResponse res = (HttpServletResponse) response;
-//            request.setAttribute("login", "u must login first");
-//            RequestDispatcher dispatcher1 = request
-//                    .getRequestDispatcher("/AdminIndex.jsp");
-//            dispatcher1.forward(req, res);
-        }
+//            // else if (session.getAttribute("admin") == null) {
+////
+////            }
+//        } catch (Exception ex) {
+//            System.out.println("exception hena"+ex.getMessage());
+//           // chain.doFilter(request, response);
+////            HttpServletResponse res = (HttpServletResponse) response;
+////            request.setAttribute("login", "u must login first");
+////            RequestDispatcher dispatcher1 = request
+////                    .getRequestDispatcher("/AdminIndex.jsp");
+////            dispatcher1.forward(req, res);
+//        }
 //        
 //        if (debug) {
 //            log("loginFilter:doFilter()");
@@ -159,7 +166,7 @@ public class loginFilter implements Filter {
 //                throw (IOException) problem;
 //            }
 //            sendProcessingError(problem, response);
-       // }
+        // }
     }
 
     /**
@@ -181,16 +188,16 @@ public class loginFilter implements Filter {
     /**
      * Destroy method for this filter
      */
-    public void destroy() {        
+    public void destroy() {
     }
 
     /**
      * Init method for this filter
      */
-    public void init(FilterConfig filterConfig) {        
+    public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
-            if (debug) {                
+            if (debug) {
                 log("loginFilter:Initializing filter");
             }
         }
@@ -209,20 +216,20 @@ public class loginFilter implements Filter {
         sb.append(")");
         return (sb.toString());
     }
-    
+
     private void sendProcessingError(Throwable t, ServletResponse response) {
-        String stackTrace = getStackTrace(t);        
-        
+        String stackTrace = getStackTrace(t);
+
         if (stackTrace != null && !stackTrace.equals("")) {
             try {
                 response.setContentType("text/html");
                 PrintStream ps = new PrintStream(response.getOutputStream());
-                PrintWriter pw = new PrintWriter(ps);                
+                PrintWriter pw = new PrintWriter(ps);
                 pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); //NOI18N
 
                 // PENDING! Localize this for next official release
-                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");                
-                pw.print(stackTrace);                
+                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");
+                pw.print(stackTrace);
                 pw.print("</pre></body>\n</html>"); //NOI18N
                 pw.close();
                 ps.close();
@@ -239,7 +246,7 @@ public class loginFilter implements Filter {
             }
         }
     }
-    
+
     public static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
@@ -253,9 +260,9 @@ public class loginFilter implements Filter {
         }
         return stackTrace;
     }
-    
+
     public void log(String msg) {
-        filterConfig.getServletContext().log(msg);        
+        filterConfig.getServletContext().log(msg);
     }
-    
+
 }

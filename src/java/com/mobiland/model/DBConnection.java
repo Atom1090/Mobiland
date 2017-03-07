@@ -23,7 +23,7 @@ public class DBConnection {
 			
 //Hatem Alamir driver
            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland?"
-			+ "user=hatem&password=Splinter_Cell#4507&autoReconnect=true&useSSL=false");
+			+ "user=root&password=Splinter_Cell#4507&autoReconnect=true&useSSL=false");
 
 //Islam Ashour driver
            //con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland","root","");
