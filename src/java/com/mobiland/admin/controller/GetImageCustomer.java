@@ -35,7 +35,7 @@ public class GetImageCustomer extends HttpServlet {
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland", "root", "root");
-            ps = con.prepareStatement("select * from customer where id=? ");
+
         } catch (Exception e) {
             e.getMessage();
         }
@@ -54,13 +54,28 @@ public class GetImageCustomer extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("x");
-
+        ResultSet rs = null;
         try {
-
+            System.out.println("the id is " + id);
+            ps = con.prepareStatement("select * from customer where id=? ");
             ps.setString(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
 
@@ -78,21 +93,6 @@ public class GetImageCustomer extends HttpServlet {
         } finally {
 
         }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
