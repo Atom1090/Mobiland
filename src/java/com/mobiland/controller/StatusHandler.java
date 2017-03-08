@@ -16,4 +16,5 @@ public class StatusHandler {
 	public static final int ERR_LOGIN_EMAIL = 4;
 	public static final int ERR_LOGIN_PASSWD = 5;
 	public static final int ERR_LOGIN_DATA_MISS = 6;
+	public static final int ERR_SIGNUP_EMAIL = 7;
 }

@@ -36,12 +36,18 @@ public class DbOperationsProduct {
     public void init() {
         usr = "root";
         psw = "root";
-        drivermanager = "com.mysql.jdbc.Driver";
-        url = "jdbc:mysql://localhost:3306/mobiland";
+     //shaaban driver 
+		/*  drivermanager = "com.mysql.jdbc.Driver";
+        url = "jdbc:mysql://localhost:3306/mobiland";*/
+		
+		//eslam driver 
+		
 
         try {
-            Class.forName(drivermanager);
-            con = DriverManager.getConnection(url, usr, psw);
+          //  Class.forName(drivermanager);
+		  DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland","root","");
+            //con = DriverManager.getConnection(url, usr, psw);
             st = con.createStatement();
 
         } catch (Exception e) {
@@ -111,7 +117,7 @@ public class DbOperationsProduct {
 
             rs = pst.executeQuery();
             while (rs.next()) {
-                Customer cust = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBytes(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
+                Customer cust = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBytes(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
                 System.out.println("" + cust);
                 list.add(cust);
             }

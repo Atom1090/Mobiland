@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author shibo
  */
-@WebFilter(filterName = "adminFilrer", urlPatterns = {"/AdminShowCustomer.jsp","/AdminAddProduct.jsp", "/adminProfile.jsp","/AdminEditProduct.jsp","/AdminEditSingleProduct.jsp"})
+@WebFilter(filterName = "adminFilrer", urlPatterns = {})
 public class adminFilrer implements Filter {
 
     private static final boolean debug = true;

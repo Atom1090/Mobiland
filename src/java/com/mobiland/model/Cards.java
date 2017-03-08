@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class Cards implements Serializable {
    private int cardId;
    private String serial;
-   private int amount;
+   private double amount;
 
     public int getCardId() {
         return cardId;
@@ -34,11 +34,11 @@ public class Cards implements Serializable {
         this.serial = serial;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
    

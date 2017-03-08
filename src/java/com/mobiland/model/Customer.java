@@ -31,7 +31,7 @@ public class Customer implements Serializable {
     
     private String password;
    
-    private String cash;
+    private double cash;
     
     private String birthdate;
    
@@ -49,7 +49,7 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public Customer(Integer id, String fName, String lName, String email, byte[] image, String phone, String password, String cash, String birthdate, String job, String address, String interest) {
+    public Customer(Integer id, String fName, String lName, String email, byte[] image, String phone, String password, double cash, String birthdate, String job, String address, String interest) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -120,11 +120,11 @@ public class Customer implements Serializable {
         this.password = password;
     }
 
-    public String getCash() {
+    public double getCash() {
         return cash;
     }
 
-    public void setCash(String cash) {
+    public void setCash(double cash) {
         this.cash = cash;
     }
 

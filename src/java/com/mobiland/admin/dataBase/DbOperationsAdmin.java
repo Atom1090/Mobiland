@@ -36,12 +36,15 @@ public class DbOperationsAdmin {
 
         psw = "root";
 
-        drivermanager = "com.mysql.jdbc.Driver";
-        url = "jdbc:mysql://localhost:3306/mobiland";
-
+      /*  drivermanager = "com.mysql.jdbc.Driver";
+        url = "jdbc:mysql://localhost:3306/mobiland";*/
+		
+	  
         try {
-            Class.forName(drivermanager);
-            con = DriverManager.getConnection(url, usr, psw);
+         //   Class.forName(drivermanager);
+		 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland","root","");
+          //  con = DriverManager.getConnection(url, usr, psw);
             st = con.createStatement();
 
         } catch (Exception e) {
