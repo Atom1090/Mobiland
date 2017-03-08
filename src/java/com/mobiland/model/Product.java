@@ -131,4 +131,12 @@ public class Product implements Serializable {
         return "Product{" + "productId=" + productId + ", name=" + name + ", desc=" + desc + ", image=" + image + ", serialNumber=" + serialNumber + ", price=" + price + ", quantity=" + quantity + '}';
     }
 
+	//Added by Hatem Alamir
+	/* Transforming the product to JSON string to send it to the client in this form
+	*/
+	public String toJson()
+	{
+		return
+				"{" + "\"productId\":" + productId + ", \"name\":\"" + name + "\", \"desc\":\"" + desc + "\", \"serialNumber\":\"" + serialNumber + "\", \"price\":" + price + ", \"quantity\":" + quantity + "}";
+	}
 }

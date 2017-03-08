@@ -52,7 +52,7 @@ public class DBConnection {
 				insert.setString(3, customer.getEmail());          
 				insert.setString(4, customer.getPhone());
 				insert.setString(5, customer.getPassword());
-				insert.setString(6, customer.getCash());
+				insert.setDouble(6, customer.getCash());
 				insert.setString(7, customer.getBirthdate());
 				insert.setString(8, customer.getJob());
 				insert.setString(9, customer.getAddress());
@@ -119,7 +119,7 @@ public class DBConnection {
 				customer.setImage(blob.getBytes(1, (int)blob.length()));
 				customer.setPhone(rs.getString("phone"));
 				customer.setPassword(rs.getString("password"));
-				customer.setCash(rs.getString("cash"));
+				customer.setCash(rs.getDouble("cash"));
 				customer.setBirthdate(rs.getDate("birthdate").toString());
 				customer.setJob(rs.getString("job"));
 				customer.setAddress(rs.getString("address"));
@@ -150,7 +150,8 @@ public class DBConnection {
 			product.setName(rs.getString("name"));
 			product.setDesc(rs.getString("desc"));
 			Blob img = rs.getBlob("image");
-			product.setImage(img.getBytes(1, (int)img.length()));
+			if(img != null)
+				product.setImage(img.getBytes(1, (int)img.length()));
 			product.setSerialNumber(rs.getString("serialNumber"));
 			product.setPrice(rs.getDouble("price"));
 			product.setQuantity(rs.getInt("quantity"));
@@ -164,12 +165,12 @@ public class DBConnection {
 	{
 		if(index >= 0)
 		{
-			PreparedStatement statement = con.prepareStatement("select * from product;");
-
-			ResultSet rs = statement.executeQuery();
-
+			
 			if(category.equals("latest"))
 			{
+				PreparedStatement statement = con.prepareStatement("select * from product;");
+				ResultSet rs = statement.executeQuery();
+				
 				rs.afterLast();
 				while(rs.previous())
 				{
@@ -180,7 +181,8 @@ public class DBConnection {
 						product.setName(rs.getString("name"));
 						product.setDesc(rs.getString("desc"));
 						Blob img = rs.getBlob("image");
-						product.setImage(img.getBytes(1, (int)img.length()));
+						if(img != null)
+							product.setImage(img.getBytes(1, (int)img.length()));
 						product.setSerialNumber(rs.getString("serialNumber"));
 						product.setPrice(rs.getDouble("price"));
 						product.setQuantity(rs.getInt("quantity"));
@@ -192,11 +194,32 @@ public class DBConnection {
 						break;
 				}
 			}
+			else if(category.equals("all"))
+			{
+				PreparedStatement statement = con.prepareStatement("select * from product where productId=(?);");
+				statement.setInt(1, index);
+				ResultSet rs = statement.executeQuery();
+				
+				if(rs.next())
+				{
+					Product product = new Product();
+					product.setProductId(rs.getInt("productId"));
+					product.setName(rs.getString("name"));
+					product.setDesc(rs.getString("desc"));
+					Blob img = rs.getBlob("image");
+					if(img != null)
+						product.setImage(img.getBytes(1, (int)img.length()));
+					product.setSerialNumber(rs.getString("serialNumber"));
+					product.setPrice(rs.getDouble("price"));
+					product.setQuantity(rs.getInt("quantity"));
+					return product;
+				}
+			}
 		}
 		return null;
 	}
 	
-	public ArrayList<Product> getProducts() throws SQLException
+	public ArrayList<Product> getAllProducts() throws SQLException
 	{
 		PreparedStatement ps = con.prepareStatement("select  * from product;");
 		

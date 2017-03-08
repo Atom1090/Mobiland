@@ -69,7 +69,7 @@ public class SignupServlet extends HttpServlet {
 			customer.setEmail(email);
 			customer.setPhone(phone);
 			customer.setPassword(password);
-			customer.setCash("0");
+			customer.setCash(0.0);
 
 			InputStream is = part.getInputStream();
 

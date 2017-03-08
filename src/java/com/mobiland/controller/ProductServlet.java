@@ -22,10 +22,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author atom
  */
-@WebServlet(name = "ProductServlet", urlPatterns = {"/product-serv"})
+@WebServlet(name = "ProductServlet", urlPatterns = {"/prod-serv"})
 public class ProductServlet extends HttpServlet {
 
 	DBConnection conn  = null;
+	
 	
 	@Override
 	public void init()
@@ -49,7 +50,9 @@ public class ProductServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("application/octet-stream");
+		
+		response.setContentType("application/json");
+		
 		PrintWriter out = response.getWriter();
 		
 		String page = request.getParameter("page");
@@ -59,6 +62,7 @@ public class ProductServlet extends HttpServlet {
 				conn = new DBConnection();
 			
 			String id = (String)request.getParameter("id");
+			
 			if(id != null)
 			{
 				int prodId = -1;
@@ -71,7 +75,7 @@ public class ProductServlet extends HttpServlet {
 				Product product = conn.getProductById(prodId);
 				if(product != null)
 				{
-					out.print(product);
+					out.write(id);
 				}
 			}
 
@@ -80,19 +84,45 @@ public class ProductServlet extends HttpServlet {
 				String category = request.getParameter("category");
 				String index = request.getParameter("index");
 				
-				if(category != null && index != null)
+				if(category != null)
 				{
-					int i = 0;
-					try{
-					i = Integer.parseInt(index);
-					} catch(NumberFormatException ex)
+					if(category.equals("all"))
 					{
-						ex.printStackTrace();
+						ArrayList<Product> allProd = conn.getAllProducts();
+						
+						out.print("[");
+						
+						for(int i = 0; i < allProd.size(); i++)
+						{
+							out.print(allProd.get(i).toJson());
+							if(i < allProd.size() - 1)
+								out.print(", ");
+						}
+						
+						out.println("]");
+						System.out.println(out);
+						out.flush();
+						out.close();
 					}
-					Product product = conn.getProductByCategory(category, i);
-					if(product != null)
+					else if(index != null)
 					{
-						out.print(product);
+						int i = 0;
+						try{
+							i = Integer.parseInt(index);
+						} catch(NumberFormatException ex)
+						{
+							ex.printStackTrace();
+						}
+
+						Product product = conn.getProductByCategory(category, i);
+						if(product != null)
+						{
+							out.println("{\"index\":" + index + ", \"product\":" + product.toJson() + "}");
+						}
+						else
+						{
+							out.println("{\"index\":-1" + ", \"product\":{}}");
+						}
 					}
 				}
 			}

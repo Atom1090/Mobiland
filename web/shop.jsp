@@ -42,9 +42,11 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="user-menu">
+						
 <!--edited by Hatem Al-Amir
 	adding th login form to the top shortcut bar
 -->
+
                         <ul>
 							<c:choose>
 								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
@@ -79,23 +81,23 @@
 								<a  data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top"><i class="fa fa-user"></i> Login</a>
 							</li>
 							
-							<form id="login-form-wrap-top" class="login collapse" method="post">
+							<form id="login-form-wrap-top" class="login collapse" method="post" action="login-serv?page=index.jsp">
 								<p class="form-row form-row-first">
 									<label for="username">Username or email <span class="required">*</span>
 									</label>
-									<input type="text" id="username-top" name="username" class="input-text">
+									<input type="text" id="username-top" name="userName" class="input-text"  required="true" pattern= "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
 								</p>
 								<p class="form-row form-row-last">
 									<label for="password">Password <span class="required">*</span>
 									</label>
-									<input type="password" id="password-top" name="password" class="input-text">
+									<input type="password" id="password-top" name="password" class="input-text" required="true" />
 								</p>
 								<div class="clear"></div>
 
 
 								<p class="form-row">
-									<input type="submit" value="Login" name="login" class="button">
-									<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
+									<input type="submit" value="Login" class="button">
+									<label class="inline" for="rememberme"><input type="checkbox" id="rememberme-top" name="rememberMe"> Remember me </label>
 								</p>
 
 								<div class="clear"></div>
@@ -119,12 +121,35 @@
 								</div>
 							</div>
                         </ul>
-<!--end of edited part by Hatem Al-Amir-->
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- End header area -->
+    
+	<c:if test="${not empty param.status}">
+		<c:choose>
+			<c:when test="${param.status eq StatusHandler.ERR_DB_CONN}">
+				<div class="alert alert-danger">
+					<strong>Error!</strong> Internal database error.
+				</div>
+			</c:when>
+			
+			<c:when test="${param.status eq StatusHandler.ERR_LOGIN_EMAIL}">
+				<div class="alert alert-danger">
+					<strong>Error!</strong> Email does not exist.
+				</div>
+			</c:when>
+			
+			<c:when test="${param.status eq StatusHandler.ERR_LOGIN_PASSWD}">
+				<div class="alert alert-danger">
+					<strong>Error!</strong> Password is wrong.
+				</div>
+			</c:when>
+		</c:choose>
+    </c:if>
+	
+<!--end of edited part by Hatem Al-Amir-->
     
     <div class="site-branding-area">
         <div class="container">
@@ -184,19 +209,19 @@
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
+            <div class="row" id="prod_all_area">
+                <div class="col-md-3 col-sm-6" name="prod-all-div">
                     <div class="single-shop-product">
                         <div class="product-upper">
-                            <img src="img/product-2.jpg" alt="">
+                            <img src="img/product-2.jpg" alt="" id="prod-all-img-1">
                         </div>
-                        <h2><a href="">Apple new mac book 2015 March :P</a></h2>
+                        <h2><a href="" id="prod-all-single-1">Apple new mac book 2015 March :P</a></h2>
                         <div class="product-carousel-price">
-                            <ins>$899.00</ins> <del>$999.00</del>
+                            <ins id="prod-all-price-1">$899.00</ins> <del>$999.00</del>
                         </div>  
                         
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70" id="prod-all-add-1">Add to cart</a>
                         </div>                       
                     </div>
                 </div>
@@ -488,5 +513,8 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+	
+	<script src="js/all_products.js"></script>
+	<script>get_all_prod();</script>
   </body>
 </html>

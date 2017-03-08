@@ -279,96 +279,94 @@
                 <div class="col-md-12">
                     <div class="latest-product">
                         <h2 class="section-title">Latest Products</h2>
-                        <div class="product-carousel">
-                            <div class="single-product" name="product-div">
-								<c:set var="varX" value="ProductServlet?category=latest&index=1" />
-								
+                        <div class="product-carousel" id="prod_latest_area">
+                            <div class="single-product" name="prod-latest-div">
                                 <div class="product-f-image">
-                                    <img src="img/product-1.jpg" alt="" name="product-image">
+                                    <img src="img/product-1.jpg" alt="" id="prod-latest-img-0">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link" name="product-add"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.jsp" class="view-details-link" name="product-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="#" class="add-to-cart-link" id="prod-latest-add-0"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.html" class="view-details-link" id="prod-latest-detail-0"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
                                 
-                                <h2 name="product-name"><a href="single-product.jsp">Samsung</a></h2>
+                                <h2 id="prod-latest-name-0"><a href="single-product.html" id="prod-latest-single-0">Samsung Galaxy s5- 2015</a></h2>
                                 
                                 <div class="product-carousel-price">
-                                    <ins name="product-price">$700.00</ins> <del>$100.00</del>
+                                    <ins id="prod-latest-price-0">$700.00</ins> <del>$100.00</del>
                                 </div> 
                             </div>
-                            <div class="single-product">
+                            <div class="single-product" name="prod-latest-div">
                                 <div class="product-f-image">
-                                    <img src="img/product-2.jpg" alt="">
+                                    <img src="img/product-2.jpg" alt="" id="prod-latest-img-1">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.jsp" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="#" class="add-to-cart-link" id="prod-latest-add-1"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.html" class="view-details-link" id="prod-latest-detail-1"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
                                 
-                                <h2>Nokia Lumia 1320</h2>
+                                <h2 id="prod-latest-name-1"><a href="single-product.html" id="prod-latest-single-1">Nokia Lumia 1320</a></h2>
                                 <div class="product-carousel-price">
-                                    <ins>$899.00</ins> <del>$999.00</del>
+                                    <ins id="prod-latest-price-1">$899.00</ins> <del>$999.00</del>
                                 </div> 
                             </div>
-                            <div class="single-product">
+                            <div class="single-product" name="prod-latest-div">
                                 <div class="product-f-image">
-                                    <img src="img/product-3.jpg" alt="">
+                                    <img src="img/product-3.jpg" alt=""  id="prod-latest-img-2">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.jsp" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="#" class="add-to-cart-link" id="prod-latest-add-2"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.html" class="view-details-link" id="prod-latest-detail-2"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
                                 
-                                <h2>LG Leon 2015</h2>
+                                <h2 id="prod-latest-name-2"><a href="single-product.html" id="prod-latest-single-2">LG Leon 2015</a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>$400.00</ins> <del>$425.00</del>
+                                    <ins id="prod-latest-price-2">$400.00</ins> <del>$425.00</del>
                                 </div>                                 
                             </div>
-                            <div class="single-product">
+                            <div class="single-product" name="prod-latest-div">
                                 <div class="product-f-image">
-                                    <img src="img/product-4.jpg" alt="">
+                                    <img src="img/product-4.jpg" alt="" id="prod-latest-img-3">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.jsp" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="#" class="add-to-cart-link" id="prod-latest-add-3"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.html" class="view-details-link" id="prod-latest-detail-3"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
                                 
-                                <h2><a href="single-product.jsp">Sony microsoft</a></h2>
+                                <h2 id="prod-latest-name-3"><a href="single-product.html" id="prod-latest-single-3">Sony microsoft</a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>$200.00</ins> <del>$225.00</del>
+                                    <ins id="prod-latest-price-3">$200.00</ins> <del>$225.00</del>
                                 </div>                            
                             </div>
-                            <div class="single-product">
+                            <div class="single-product" name="prod-latest-div">
                                 <div class="product-f-image">
-                                    <img src="img/product-5.jpg" alt="">
+                                    <img src="img/product-5.jpg" alt="" id="prod-latest-img-4">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.jsp" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="#" class="add-to-cart-link" id="prod-latest-add-4"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.html" class="view-details-link" id="prod-latest-detail-4"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
                                 
-                                <h2>iPhone 6</h2>
+                                <h2 id="prod-latest-name-4"><a href="single-product.html" id="prod-latest-single-4">iPhone 6</a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>$1200.00</ins> <del>$1355.00</del>
+                                    <ins id="prod-latest-price-4">$1200.00</ins> <del>$1355.00</del>
                                 </div>                                 
                             </div>
-                            <div class="single-product">
+                            <div class="single-product" name="prod-latest-div">
                                 <div class="product-f-image">
-                                    <img src="img/product-6.jpg" alt="">
+                                    <img src="img/product-6.jpg" alt="" id="prod-latest-img-5">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.jsp" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="#" class="add-to-cart-link" id="prod-latest-add-5"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.html" class="view-details-link" id="prod-latest-detail-5"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
                                 
-                                <h2><a href="single-product.jsp">Samsung gallaxy note 4</a></h2>
+                                <h2 id="prod-latest-name-5"><a href="single-product.html" id="prod-latest-single-5">Samsung gallaxy note 4</a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>$400.00</ins>
+                                    <ins id="prod-latest-price-5">$400.00</ins>
                                 </div>                            
                             </div>
                         </div>
@@ -651,6 +649,7 @@
     <!-- Slider -->
     <script type="text/javascript" src="js/bxslider.min.js"></script>
 	<script type="text/javascript" src="js/script.slider.js"></script>
-	<script type="text/javascript" src="js/product.js"></script>
+	<script type="text/javascript" src="js/latest_products.js"></script>
+  <script>/*init_latest_prods();*/</script>>
   </body>
 </html>
