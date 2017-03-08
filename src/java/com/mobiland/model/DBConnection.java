@@ -412,5 +412,21 @@ public class DBConnection {
         }
         return product;
     }
+     public boolean deleteProductCart(int id) {
+        int flag = 0;
+        try {
+            PreparedStatement pst = con.prepareStatement("delete from cart where productId=? ");
+            pst.setInt(1, id);
+            flag = pst.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("" + e.getMessage());
+        }
+
+        if (flag > 0) {
+            return true;
+        }
+        return false;
+    }
         //End of shaaban 
 }

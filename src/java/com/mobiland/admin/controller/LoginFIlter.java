@@ -26,8 +26,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author shibo
  */
-@WebFilter(filterName = "adminFilrer", urlPatterns = {})
-public class adminFilrer implements Filter {
+@WebFilter(filterName = "LoginFIlter", urlPatterns = {"/AdminIndex.jsp"})
+public class LoginFIlter implements Filter {
 
     private static final boolean debug = true;
 
@@ -36,16 +36,16 @@ public class adminFilrer implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
 
-    public adminFilrer() {
+    public LoginFIlter() {
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("adminFilrer:DoBeforeProcessing");
+            log("LoginFIlter:DoBeforeProcessing");
         }
 
-        // Write code here to process the request and/or response before
+	// Write code here to process the request and/or response before
         // the rest of the filter chain is invoked.
         // For example, a logging filter might log items on the request object,
         // such as the parameters.
@@ -70,7 +70,7 @@ public class adminFilrer implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("adminFilrer:DoAfterProcessing");
+            log("LoginFIlter:DoAfterProcessing");
         }
 
 	// Write code here to process the request and/or response after
@@ -104,78 +104,30 @@ public class adminFilrer implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("requeeeest" + request.getLocalAddr());
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
-
         try {
-            Admin admin = (Admin) session.getAttribute("admin");
+            Admin admin = (Admin) session.getAttribute("object");
+            if (admin == null) {
 
-            if (session.getAttribute("admin") != null) {
-                System.out.println("existed ");
-                req.setAttribute("object", admin);
-                if (request instanceof HttpServletRequest) {
-                    String url = ((HttpServletRequest) request).getRequestURL().toString();
-                    String queryString = ((HttpServletRequest) request).getQueryString();
-                      RequestDispatcher dispatcher1 = request
-                    .getRequestDispatcher(url + "?" + queryString);
-                      System.out.println("accessed");
-            dispatcher1.forward(request, response);
-                }else{
-                System.out.println("not existed");
-                 HttpServletResponse res = (HttpServletResponse) response;
-            request.setAttribute("login", "u must login first");
-            RequestDispatcher dispatcher1 = request
-                    .getRequestDispatcher("/AdminIndex.jsp");
-            dispatcher1.forward(req, res);
+                chain.doFilter(request, response);
+            } else {
+                HttpServletResponse res = (HttpServletResponse) response;
+                session.setAttribute("object", admin);
+                RequestDispatcher dispatcher1 = request
+                        .getRequestDispatcher("/adminProfile.jsp");
+                dispatcher1.forward(req, res);
+
             }
-                //chain.doFilter(request, response);
-
-            }}
-            // else if (session.getAttribute("admin") == null) {
-//
-//            }
-         catch (Exception ex) {
-          ex.printStackTrace();
-          
-//            System.out.println("exception i asmin filter"+ex.getMessage());
+        } catch (Exception e) {
             HttpServletResponse res = (HttpServletResponse) response;
-            request.setAttribute("login", "u must login first");
+
             RequestDispatcher dispatcher1 = request
-                    .getRequestDispatcher("/AdminIndex.jsp");
+                    .getRequestDispatcher("/adminProfile.jsp");
             dispatcher1.forward(req, res);
         }
-//        if (debug) {
-//            log("adminFilrer:doFilter()");
-//        }
-//        
-//        doBeforeProcessing(request, response);
-//        
-//        Throwable problem = null;
-//        try {
-//            chain.doFilter(request, response);
-//        } catch (Throwable t) {
-//	    // If an exception is thrown somewhere down the filter chain,
-//            // we still want to execute our after processing, and then
-//            // rethrow the problem after that.
-//            problem = t;
-//            t.printStackTrace();
-//        }
-//        
-//        doAfterProcessing(request, response);
-//
-//	// If there was a problem, we want to rethrow it if it is
-//        // a known type, otherwise log it.
-//        if (problem != null) {
-//            if (problem instanceof ServletException) {
-//                throw (ServletException) problem;
-//            }
-//            if (problem instanceof IOException) {
-//                throw (IOException) problem;
-//            }
-//            sendProcessingError(problem, response);
-        // }
+
     }
 
     /**
@@ -207,7 +159,7 @@ public class adminFilrer implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {
-                log("adminFilrer:Initializing filter");
+                log("LoginFIlter:Initializing filter");
             }
         }
     }
@@ -218,9 +170,9 @@ public class adminFilrer implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("adminFilrer()");
+            return ("LoginFIlter()");
         }
-        StringBuffer sb = new StringBuffer("adminFilrer(");
+        StringBuffer sb = new StringBuffer("LoginFIlter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

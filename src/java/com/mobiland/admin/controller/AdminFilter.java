@@ -26,9 +26,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author shibo
  */
-///AdminIndex.jsp"
-//@WebFilter(filterName = "loginFilter", urlPatterns = {})
-public class loginFilter implements Filter {
+@WebFilter(filterName = "adminFilrer", urlPatterns = {"/AdminShowCustomer.jsp","/AdminAddProduct.jsp","/AdminEditProduct.jsp","/AdminEditSingleProduct.jsp","/adminProfile.jsp"})
+public class AdminFilter implements Filter {
 
     private static final boolean debug = true;
 
@@ -37,13 +36,13 @@ public class loginFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
 
-    public loginFilter() {
+    public AdminFilter() {
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("loginFilter:DoBeforeProcessing");
+            log("adminFilrer:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -71,7 +70,7 @@ public class loginFilter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("loginFilter:DoAfterProcessing");
+            log("adminFilrer:DoAfterProcessing");
         }
 
 	// Write code here to process the request and/or response after
@@ -105,40 +104,64 @@ public class loginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-//        String url = null;
-//        String queryString = null;
-//        HttpServletRequest req = (HttpServletRequest) request;
-//        HttpSession session = req.getSession(false);
-//        if (request instanceof HttpServletRequest) {
-//            url = ((HttpServletRequest) request).getRequestURL().toString();
-//            queryString = ((HttpServletRequest) request).getQueryString();
-//        }
-//        try {
-//            Admin admin = (Admin) session.getAttribute("admin");
-//            if (session.getAttribute("admin") != null) {
-//                HttpServletResponse res = (HttpServletResponse) response;
-//                request.setAttribute("object", admin);
-//                RequestDispatcher dispatcher1 = request
-//                        .getRequestDispatcher(url + "?" + queryString);
-//                dispatcher1.forward(req, res);
-//                // chain.doFilter(request, response);
-//
-//            }
-//            // else if (session.getAttribute("admin") == null) {
-////
-////            }
-//        } catch (Exception ex) {
-//            System.out.println("exception hena"+ex.getMessage());
-//           // chain.doFilter(request, response);
-////            HttpServletResponse res = (HttpServletResponse) response;
-////            request.setAttribute("login", "u must login first");
-////            RequestDispatcher dispatcher1 = request
-////                    .getRequestDispatcher("/AdminIndex.jsp");
-////            dispatcher1.forward(req, res);
-//        }
-//        
+        System.out.println("requeeeest" + request.getLocalAddr());
+
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpSession session = req.getSession(false);
+
+        try {
+
+            if (session != null) {
+                Admin admin = (Admin) session.getAttribute("admin");
+                System.out.println("existed ");
+                req.setAttribute("object", admin);
+
+               chain.doFilter(request, response);
+            } //                if (req instanceof ServletRequest) {
+            //                    String url = ((HttpServletRequest) request).getRequestURL().toString();
+            //                    String queryString = ((HttpServletRequest) request).getQueryString();
+            //                    if(queryString!=null){
+            //                         HttpServletResponse  res=(HttpServletResponse)response;
+            //                      res.sendRedirect(url+"?"+queryString);
+            ////                    RequestDispatcher dispatcher1 = request
+            ////                            .getRequestDispatcher(url + "?" + queryString);
+            ////                    System.out.println("accessed" + url + "?" + queryString);
+            ////                    dispatcher1.forward(request, response);}
+            //                    }else if(queryString==null){
+            //                      HttpServletResponse  res=(HttpServletResponse)response;
+            //                      res.sendRedirect(url);
+            //                                
+            ////                    RequestDispatcher dispatcher1 = request
+            ////                            .getRequestDispatcher(url. );
+            //////                    System.out.println("accessed" + url + "?" + queryString);
+            ////                    dispatcher1.forward(request, response);
+            //                    
+            //                    }
+            else {
+                System.out.println("not existed");
+                HttpServletResponse res = (HttpServletResponse) response;
+                request.setAttribute("login", "u must login first");
+                RequestDispatcher dispatcher1 = request
+                        .getRequestDispatcher("/AdminIndex.jsp");
+                dispatcher1.forward(req, res);
+            }
+                //chain.doFilter(request, response);
+
+         // else if (session.getAttribute("admin") == null) {
+            //
+            //            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+//this is in case first time and session will be hit null pointer excception 
+//            System.out.println("exception i asmin filter"+ex.getMessage());
+            System.out.println("exception 0"+ex.getMessage());
+            request.setAttribute("login", "u must login first");
+            RequestDispatcher dispatcher1 = request
+                    .getRequestDispatcher("/AdminIndex.jsp");
+            dispatcher1.forward(req, response);
+        }
 //        if (debug) {
-//            log("loginFilter:doFilter()");
+//            log("adminFilrer:doFilter()");
 //        }
 //        
 //        doBeforeProcessing(request, response);
@@ -198,7 +221,7 @@ public class loginFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {
-                log("loginFilter:Initializing filter");
+                log("adminFilrer:Initializing filter");
             }
         }
     }
@@ -209,9 +232,9 @@ public class loginFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("loginFilter()");
+            return ("adminFilrer()");
         }
-        StringBuffer sb = new StringBuffer("loginFilter(");
+        StringBuffer sb = new StringBuffer("adminFilrer(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

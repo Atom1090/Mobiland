@@ -49,7 +49,7 @@
     <body>
 
 
- <sql:setDataSource
+        <sql:setDataSource
             var="myDS"
             driver="com.mysql.jdbc.Driver"
             url="jdbc:mysql://localhost:3306/mobiland"
@@ -73,7 +73,7 @@
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                           <li><a href="adminProfile.jsp">Home</a></li>
+                            <li><a href="adminProfile.jsp">Home</a></li>
                             <li ><a href="AdminEditProduct.jsp">Shop info page</a></li>
                             <li class="active"><a href="AdminAddProduct.jsp">Add Product</a></li>
 
@@ -112,7 +112,7 @@
                                 <div class="col-md-4">
 
                                 </div>
-                                
+
                                 <div>
                                     <div class="container">
 

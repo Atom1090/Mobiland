@@ -1,4 +1,4 @@
-<%@page session="false"%>
+<%@page session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
@@ -269,7 +269,8 @@
                                         
                                        $ <ins name="price">${object.price}</ins> 
                                     </div>    
-                                    
+                                    hello ${sessionScope.customer.id} 
+                                    ${sessionScope.customer.fName} 
                                     <form action="BuyProduct" class="cart">
                                         <input type="hidden" value=${object.productId}  name="productId" />
                                         <input type="hidden" value="${session.getId()}" name="sessionId" ></input>

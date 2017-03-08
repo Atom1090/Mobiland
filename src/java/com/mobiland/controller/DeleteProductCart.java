@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mobiland.admin.controller;
+package com.mobiland.controller;
 
+import com.mobiland.admin.controller.DeleteProduct;
 import com.mobiland.model.DBConnection;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,24 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author shibo
  */
-@WebServlet(name = "GetImageCustomer", urlPatterns = {"/GetImageCustomer"})
-public class GetImageCustomer extends HttpServlet {
-
-    Connection con = null;
-    PreparedStatement ps;
-
-    @Override
-    public void init() throws ServletException {
-
-        try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mobiland", "root", "root");
-
-        } catch (Exception e) {
-            e.getMessage();
-        }
-
-    }
+@WebServlet(name = "DeleteProductCart", urlPatterns = {"/DeleteProductCart"})
+public class DeleteProductCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,8 +36,18 @@ public class GetImageCustomer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-    }
+        response.setContentType("text/html;charset=UTF-8");
+        DBConnection dp=null;
+        try {
+            dp = new DBConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     boolean x=  dp.deleteProductCart(Integer.parseInt(request.getParameter("id")));
+     if(x){
+     response.sendRedirect("cart.jsp");}
+       
+        }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -67,35 +59,9 @@ public class GetImageCustomer extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-   synchronized protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        int  id = Integer.parseInt(request.getParameter("x"));
-        ResultSet rs = null;
-        try {
-            System.out.println("the id is " + id);
-            ps = con.prepareStatement("select * from customer where id=? ");
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                Blob blob = rs.getBlob(5);
-                byte byteArray[] = blob.getBytes(1, (int) blob.length());
-
-                response.setContentType("image/jpg");
-                //   out.print(blob);
-                OutputStream os = response.getOutputStream();
-                os.write(byteArray);
-                
-
-            }
-            rs.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-
-        }
+        processRequest(request, response);
     }
 
     /**

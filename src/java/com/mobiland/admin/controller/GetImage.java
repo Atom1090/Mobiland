@@ -50,7 +50,6 @@ public class GetImage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,17 +62,17 @@ public class GetImage extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    synchronized protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("x");
-ResultSet rs=null;
+        response.setContentType("text/html;charset=UTF-8");
+        int id = Integer.parseInt(request.getParameter("x"));
+        ResultSet rs = null;
         try {
             ps = con.prepareStatement("select * from product where productId=? ");
             System.out.println("the id now is " + id);
 
-            ps.setString(1, id);
-             rs= ps.executeQuery();
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
 
             if (rs.next()) {
 
