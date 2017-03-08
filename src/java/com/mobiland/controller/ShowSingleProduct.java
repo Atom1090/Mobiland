@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mobiland.admin.controller;
+package com.mobiland.controller;
 
-import com.mobiland.model.Admin;
+
 import com.mobiland.model.DBConnection;
+import com.mobiland.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,13 +19,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author shibo
  */
-@WebServlet(name = "UpdateAdmin", urlPatterns = {"/UpdateAdmin"})
-public class UpdateAdmin extends HttpServlet {
+@WebServlet(name = "ShowSingleProduct", urlPatterns = {"/ShowSingleProduct"})
+public class ShowSingleProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,21 +37,22 @@ public class UpdateAdmin extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+  synchronized protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateAdmin</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateAdmin at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        int id = Integer.parseInt(request.getParameter("id"));
+        DBConnection db = new DBConnection();
+        Product p =db.searchProduct(id);
+         if (p != null) {
+                
+                request.setAttribute("object", p);
+                RequestDispatcher dispatcher = request
+                        .getRequestDispatcher("/cart.jsp");                
+                
+                
+                dispatcher.forward(request, response);
+                // response.sendRedirect("adminProfile.jsp");
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,7 +67,11 @@ public class UpdateAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowSingleProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -78,38 +85,10 @@ public class UpdateAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        // System.out.println(""+request.getParameter("username")+""+request.getParameter("email")+""+ request.getParameter("password"));
-        Admin admin = new Admin(Integer.parseInt(request.getParameter("id")), request.getParameter("username"), request.getParameter("email"), request.getParameter("password"));
-        System.out.println("hthththththth" + admin);
-        //
-
-        DBConnection operation;
-        boolean flag = false;
         try {
-            operation = new DBConnection();
-            System.out.println("" + admin);
-            flag = operation.update(admin);
+            processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(UpdateAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //
-        if (flag) {
-            request.setAttribute("flag", "updated successfully");
-            request.setAttribute("object", admin);
-            RequestDispatcher dispatcher = request
-                    .getRequestDispatcher("/adminProfile.jsp");
-            dispatcher.forward(request, response);
-
-        } else {
-            request.setAttribute("flag", "updated falied try again");
-
-            RequestDispatcher dispatcher = request
-                    .getRequestDispatcher("/adminProfile.jsp");
-
-            dispatcher.forward(request, response);
-
+            Logger.getLogger(ShowSingleProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

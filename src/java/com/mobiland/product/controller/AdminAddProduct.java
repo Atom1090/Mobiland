@@ -5,7 +5,7 @@
  */
 package com.mobiland.product.controller;
 
-import com.mobiland.admin.dataBase.DbOperationsProduct;
+import com.mobiland.model.DBConnection;
 import com.mobiland.model.Product;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +28,7 @@ import javax.servlet.http.Part;
 @MultipartConfig(maxFileSize = 16177216)
 public class AdminAddProduct extends HttpServlet {
 
-    DbOperationsProduct db;
+    DBConnection db;
     Product product;
 
     /**
@@ -83,7 +83,11 @@ public class AdminAddProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        db = new DbOperationsProduct();
+        try {
+            db = new DBConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminAddProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
         PrintWriter out = response.getWriter();
         String serialNumber = request.getParameter("serialNumber");
         String name = request.getParameter("productname");
@@ -99,31 +103,31 @@ public class AdminAddProduct extends HttpServlet {
         product.setQuantity(quantity);
         product.setDesc(description);
         System.out.println("the product is " + product);
-        boolean flag=false;
+        boolean flag = false;
         InputStream is = productImage.getInputStream();
 
         try {
             flag = db.addProduct(product, productImage);
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(AdminAddProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-         if (flag) {
-                request.setAttribute("flag2", "inserted product successfully");
-                // request.setAttribute("object", admin);
-                RequestDispatcher dispatcher = request
-                        .getRequestDispatcher("/AdminAddProduct.jsp");
-                dispatcher.forward(request, response);
+        if (flag) {
+            request.setAttribute("flag2", "inserted product successfully");
+            // request.setAttribute("object", admin);
+            RequestDispatcher dispatcher = request
+                    .getRequestDispatcher("/AdminAddProduct.jsp");
+            dispatcher.forward(request, response);
 
-            } else {
-                request.setAttribute("flag2", "inserted product falied try again");
+        } else {
+            request.setAttribute("flag2", "inserted product falied try again");
 
-                RequestDispatcher dispatcher = request
-                        .getRequestDispatcher("/AdminAddProduct.jsp");
+            RequestDispatcher dispatcher = request
+                    .getRequestDispatcher("/AdminAddProduct.jsp");
 
-                dispatcher.forward(request, response);
+            dispatcher.forward(request, response);
 
-            }
+        }
 //        System.out.println("done");
 //        String status = "success";
 //        response.sendRedirect("AdminAddProduct.jsp?status=" + status);

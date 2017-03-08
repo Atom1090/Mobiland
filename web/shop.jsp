@@ -42,11 +42,17 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="user-menu">
+<<<<<<< HEAD
 						
 <!--edited by Hatem Al-Amir
 	adding th login form to the top shortcut bar
 -->
 
+=======
+<!--edited by Hatem Al-Amir
+	adding th login form to the top shortcut bar
+-->
+>>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
                         <ul>
 							<c:choose>
 								<c:when test="${not empty sessionScope && not empty sessionScope.customer}">
@@ -81,23 +87,40 @@
 								<a  data-toggle="collapse" href="#login-form-wrap-top" aria-expanded="false" aria-controls="login-form-wrap-top"><i class="fa fa-user"></i> Login</a>
 							</li>
 							
+<<<<<<< HEAD
 							<form id="login-form-wrap-top" class="login collapse" method="post" action="login-serv?page=index.jsp">
 								<p class="form-row form-row-first">
 									<label for="username">Username or email <span class="required">*</span>
 									</label>
 									<input type="text" id="username-top" name="userName" class="input-text"  required="true" pattern= "[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
+=======
+							<form id="login-form-wrap-top" class="login collapse" method="post">
+								<p class="form-row form-row-first">
+									<label for="username">Username or email <span class="required">*</span>
+									</label>
+									<input type="text" id="username-top" name="username" class="input-text">
+>>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
 								</p>
 								<p class="form-row form-row-last">
 									<label for="password">Password <span class="required">*</span>
 									</label>
+<<<<<<< HEAD
 									<input type="password" id="password-top" name="password" class="input-text" required="true" />
+=======
+									<input type="password" id="password-top" name="password" class="input-text">
+>>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
 								</p>
 								<div class="clear"></div>
 
 
 								<p class="form-row">
+<<<<<<< HEAD
 									<input type="submit" value="Login" class="button">
 									<label class="inline" for="rememberme"><input type="checkbox" id="rememberme-top" name="rememberMe"> Remember me </label>
+=======
+									<input type="submit" value="Login" name="login" class="button">
+									<label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme-top" name="rememberme"> Remember me </label>
+>>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
 								</p>
 
 								<div class="clear"></div>
@@ -121,12 +144,17 @@
 								</div>
 							</div>
                         </ul>
+<<<<<<< HEAD
+=======
+<!--end of edited part by Hatem Al-Amir-->
+>>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- End header area -->
     
+<<<<<<< HEAD
 	<c:if test="${not empty param.status}">
 		<c:choose>
 			<c:when test="${param.status eq StatusHandler.ERR_DB_CONN}">
@@ -151,6 +179,8 @@
 	
 <!--end of edited part by Hatem Al-Amir-->
     
+=======
+>>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
     <div class="site-branding-area">
         <div class="container">
             <div class="row">
@@ -209,6 +239,7 @@
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
+<<<<<<< HEAD
             <div class="row" id="prod_all_area">
                 <div class="col-md-3 col-sm-6" name="prod-all-div">
                     <div class="single-shop-product">
@@ -222,6 +253,21 @@
                         
                         <div class="product-option-shop">
                             <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70" id="prod-all-add-1">Add to cart</a>
+=======
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="img/product-2.jpg" alt="">
+                        </div>
+                        <h2><a href="">Apple new mac book 2015 March :P</a></h2>
+                        <div class="product-carousel-price">
+                            <ins>$899.00</ins> <del>$999.00</del>
+                        </div>  
+                        
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+>>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
                         </div>                       
                     </div>
                 </div>
@@ -513,8 +559,11 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+<<<<<<< HEAD
 	
 	<script src="js/all_products.js"></script>
 	<script>get_all_prod();</script>
+=======
+>>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
   </body>
 </html>

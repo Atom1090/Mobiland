@@ -8,7 +8,6 @@ package com.mobiland.controller;
 import com.mobiland.model.DBConnection;
 import com.mobiland.model.Product;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;

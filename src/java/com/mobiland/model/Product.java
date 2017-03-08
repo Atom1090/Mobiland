@@ -60,6 +60,14 @@ public class Product implements Serializable {
         return name;
     }
 
+	public Product(Integer productId, String name, String desc, double price, int quantity) {
+		this.productId = productId;
+		this.name = name;
+		this.desc = desc;
+		this.price = price;
+		this.quantity = quantity;
+	}
+
     public void setName(String name) {
         this.name = name;
     }
@@ -130,13 +138,12 @@ public class Product implements Serializable {
     public String toString() {
         return "Product{" + "productId=" + productId + ", name=" + name + ", desc=" + desc + ", image=" + image + ", serialNumber=" + serialNumber + ", price=" + price + ", quantity=" + quantity + '}';
     }
-
-	//Added by Hatem Alamir
-	/* Transforming the product to JSON string to send it to the client in this form
-	*/
+	
+	//added by Hatem Al-Amir
 	public String toJson()
 	{
 		return
 				"{" + "\"productId\":" + productId + ", \"name\":\"" + name + "\", \"desc\":\"" + desc + "\", \"serialNumber\":\"" + serialNumber + "\", \"price\":" + price + ", \"quantity\":" + quantity + "}";
 	}
+
 }

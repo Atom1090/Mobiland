@@ -45,7 +45,7 @@ public class SignupServlet extends HttpServlet {
 			if(db == null)
 				db = new DBConnection();
         
-			//shaaban
+			
 			String address=request.getParameter("billing_country");
 			String fname=request.getParameter("billing_first_name");
 			String lname=request.getParameter("billing_last_name");
@@ -56,9 +56,8 @@ public class SignupServlet extends HttpServlet {
 			String phone=request.getParameter("billing_phone");
 			String password=request.getParameter("account_password");
 			Part part = request.getPart("image");
-			
-			
-			customer = new Customer();
+
+			customer=new Customer();
 
 			customer.setAddress(address);
 			customer.setFName(fname);
@@ -69,11 +68,11 @@ public class SignupServlet extends HttpServlet {
 			customer.setEmail(email);
 			customer.setPhone(phone);
 			customer.setPassword(password);
-			customer.setCash(0.0);
+			customer.setCash(0);
 
-			InputStream is = part.getInputStream();
+			//InputStream is = part.getInputStream();
 
-			result = db.insertUser(customer, part);
+			result = db.insertUser(customer,part);
 			
 		} catch (SQLException ex) {
             ex.printStackTrace();

@@ -1,18 +1,23 @@
+package com.mobiland.admin.controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mobiland.admin.controller;
 
-import com.mobiland.model.Admin;
+
 import com.mobiland.model.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +28,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author shibo
  */
-@WebServlet(name = "UpdateAdmin", urlPatterns = {"/UpdateAdmin"})
-public class UpdateAdmin extends HttpServlet {
+@WebServlet(urlPatterns = {"/DeleteProduct"})
+public class DeleteProduct extends HttpServlet {
 
+ 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,19 +44,18 @@ public class UpdateAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateAdmin</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateAdmin at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        DBConnection dp=null;
+        try {
+            dp = new DBConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+     boolean x=  dp.deleteProduct(Integer.parseInt(request.getParameter("u")));
+     if(x){
+     response.sendRedirect("AdminEditProduct.jsp");}
+       
+        }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -78,39 +83,7 @@ public class UpdateAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        // System.out.println(""+request.getParameter("username")+""+request.getParameter("email")+""+ request.getParameter("password"));
-        Admin admin = new Admin(Integer.parseInt(request.getParameter("id")), request.getParameter("username"), request.getParameter("email"), request.getParameter("password"));
-        System.out.println("hthththththth" + admin);
-        //
-
-        DBConnection operation;
-        boolean flag = false;
-        try {
-            operation = new DBConnection();
-            System.out.println("" + admin);
-            flag = operation.update(admin);
-        } catch (SQLException ex) {
-            Logger.getLogger(UpdateAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //
-        if (flag) {
-            request.setAttribute("flag", "updated successfully");
-            request.setAttribute("object", admin);
-            RequestDispatcher dispatcher = request
-                    .getRequestDispatcher("/adminProfile.jsp");
-            dispatcher.forward(request, response);
-
-        } else {
-            request.setAttribute("flag", "updated falied try again");
-
-            RequestDispatcher dispatcher = request
-                    .getRequestDispatcher("/adminProfile.jsp");
-
-            dispatcher.forward(request, response);
-
-        }
+        processRequest(request, response);
     }
 
     /**
