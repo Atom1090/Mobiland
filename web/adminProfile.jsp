@@ -58,16 +58,9 @@
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-<<<<<<< HEAD
                             <li><a href="adminIndex.html">Home</a></li>
                             <li class="active"><a href="adminShop.html">Shop page</a></li>
                             <li><a href="adminsingle-product.html">Single product</a></li>
-=======
-                            <li><a href="#">Home</a></li>
-                            <li ><a href="AdminEditProduct.jsp">Shop info page</a></li>
-                            <li><a href="AdminShowCustomer.jsp">show customer</a></li>
-                            <li class="active"><a href="AdminAddProduct.jsp">Add Product</a></li>
->>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
 
 
                         </ul>
@@ -244,7 +237,6 @@
 
     </center>
 
-<<<<<<< HEAD
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
@@ -321,9 +313,6 @@
             </div>
         </div>
     </div>
-=======
- 
->>>>>>> 312976f4193c645a2d717a09cebb76cf2bd41ebd
 
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
